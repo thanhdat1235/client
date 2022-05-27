@@ -1,5 +1,10 @@
 <template>
   <div class="loginpage">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css
+"
+    />
     <Header />
     <LoginPage />
     <Footer />
@@ -20,8 +25,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.loginpage {
-  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
-}
-</style>
+<style lang="scss" scoped></style>

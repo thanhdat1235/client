@@ -147,10 +147,10 @@ import {
 export default {
   mixins: [validationMixin],
   head: {
-    title: "Register Page",
+    title: "Edit Page",
     meta: [
       {
-        name: "login",
+        name: "editpage",
       },
     ],
   },

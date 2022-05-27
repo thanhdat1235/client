@@ -1,16 +1,11 @@
 <template>
   <section class="main-view">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css
-"
-    />
     <div class="container-scroller">
       <div class="page-body-wrapper">
         <Header />
         <div class="main-panel">
           <div class="content-wrapper">
-            <AdminPage />
+            <ForgotPassword />
           </div>
           <Footer />
         </div>
@@ -22,15 +17,20 @@
 <script>
 import Header from "../layout/partials/Header.vue";
 import Footer from "../layout/partials/Footer.vue";
-import AdminPage from "../components/AdminPage.vue";
+import ForgotPassword from "../components/ForgotPasswordPage.vue";
 export default {
-  name: "admin",
+  name: "forgot",
   components: {
     Header,
-    AdminPage,
+    ForgotPassword,
     Footer,
   },
 };
 </script>
 
-<style lang="scss" scope="true"></style>
+<style lang="scss" scope="true">
+.footer {
+  position: absolute;
+  bottom: 0;
+}
+</style>

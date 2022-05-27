@@ -13,9 +13,11 @@ export default {
 <style lang="scss" scoped>
 .footer {
   height: 50px;
-  background-color: #207ac133;
+  background-color: #646fd4;
   display: flex;
   align-items: center;
+  position: absolute;
+  bottom: 0;
   span {
     color: white;
   }

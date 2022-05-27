@@ -60,7 +60,7 @@
               <li class="nav-item">
                 <a
                   @click="logout"
-                  href=""
+                  href="/login"
                   class="nav-link"
                   data-toggle="collapse"
                   role="button"
@@ -192,6 +192,36 @@
               </tr>
             </tbody>
           </table>
+          <nav aria-label="Page navigation example" class="example">
+            <ul class="pagination">
+              <li @click="previousPage" :class="prev" class="page-item">
+                <span class="page-link">Previous</span>
+              </li>
+              <li class="page-item">
+                <a
+                  v-for="(total, index) in totalPages"
+                  :key="index"
+                  :class="checkActive(index + 1)"
+                  class="page-link"
+                  @click="assign(index)"
+                  href="#"
+                  >{{ index + 1 }}</a
+                >
+              </li>
+              <li @click="nextPage" :class="next" class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+            <select
+              @click="clickPage"
+              v-model="pageAble.pageSize"
+              name="pagesize"
+              id="pagesize"
+            >
+              <option value="5">5 User</option>
+              <option value="10">10 User</option>
+            </select>
+          </nav>
         </div>
         <!-- end col -->
       </div>
@@ -204,7 +234,6 @@
 import userSevice from "../service/userService";
 import { formatDate } from "../utils/dateFormat";
 import adminService from "../service/adminService";
-import logout from "../service/authenticationService";
 import authenticationService from "../service/authenticationService";
 export default {
   head: {
@@ -217,6 +246,9 @@ export default {
   },
   data() {
     return {
+      active: "",
+      prev: "disabled",
+      next: "disabled",
       dataUser: {},
       userInfo: null,
       isCheck: false,
@@ -225,19 +257,82 @@ export default {
       toggle: "none",
       color: "",
       items: [],
+      totalElements: String,
+      totalPages: String,
+      numberOfElements: String,
+      pageAble: {
+        page: 1,
+        pageSize: 5,
+      },
     };
   },
   async mounted() {
     this.userInfo = JSON.parse(localStorage.getItem("user"));
-    console.log(this.userInfo);
-    try {
-      const users = await userSevice.getAllUser();
-      this.dataUser = users.data.data;
-    } catch (error) {
-      console.log(error);
-    }
+    this.getData();
   },
   methods: {
+    async getData() {
+      try {
+        const res = await userSevice.getAllUser({
+          pageSize: this.pageAble.pageSize,
+          page: this.pageAble.page,
+        });
+        this.dataUser = res.data.data;
+        this.totalPages = res.data.totalPages;
+        this.pageAble = res.data.pageAble;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    assign(index) {
+      this.pageAble.page = index + 1;
+      this.getData();
+      if (this.pageAble.page == 1) {
+        this.prev = "disabled";
+      } else {
+        this.prev = "";
+      }
+      if (this.totalPages == this.pageAble.page) {
+        this.next = "disabled";
+      } else {
+        this.next = "";
+      }
+    },
+    clickPage() {
+      this.getData();
+      if (this.pageAble.page == 1) {
+        this.prev = "disabled";
+      } else {
+        this.prev = "";
+      }
+      if (this.totalPages == this.pageAble.page) {
+        this.next = "disabled";
+      } else {
+        this.next = "";
+      }
+    },
+    nextPage() {
+      this.pageAble.page++; // For the next page you just increment 'skip' for the page size 'limit'
+      this.getData();
+      this.prev = "";
+      if (this.totalPages == this.pageAble.page) {
+        this.next = "disabled";
+      } else {
+        this.next = "";
+      }
+    },
+    previousPage() {
+      if (this.pageAble.page > 0) {
+        this.pageAble.page--; // For the previous page, you just increment 'skip' for the page size 'limit'
+        this.getData();
+        this.next = "";
+        if (this.pageAble.page == 1) {
+          this.prev = "disabled";
+        } else {
+          this.prev = "";
+        }
+      }
+    },
     handleEdit(_id) {
       try {
         this.$router.push({ path: "/edit?id=" + _id });
@@ -307,6 +402,9 @@ export default {
         console.log(error);
       }
     },
+    checkActive(index) {
+      return this.pageAble.page === index ? "active" : "";
+    },
   },
 };
 </script>
@@ -315,9 +413,9 @@ export default {
 @import "../assets/scss/adminpage.scss";
 .content-wrapper {
   padding: 35px 1.25rem;
-  width: 84%;
+  width: 80%;
   .clearfix {
-    width: 100%;
+    width: 140%;
     .col-xs-12 {
       width: 100%;
       h2 {
@@ -342,7 +440,7 @@ export default {
 
 .all-check {
   margin-top: -16px;
-  margin-left: -30px !important;
+  margin-left: -12px !important;
 }
 
 .form-check-input {
@@ -357,7 +455,41 @@ export default {
   padding: 4px 4px;
 }
 
+.btn {
+  padding: 5px 10px;
+  color: white;
+}
+
 .btn-primary {
   margin-right: 5px;
+}
+
+.btn-danger {
+  background-color: #e74a3b;
+}
+
+.example {
+  display: flex;
+  justify-content: flex-end;
+  padding: 35px 25px;
+  .page-link {
+    padding: 10px 10px;
+  }
+}
+
+#pagesize {
+  margin-left: 10px;
+  border: solid 1px gray;
+  padding: 0 10px;
+}
+
+.active {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+}
+
+.page-item {
+  display: flex;
 }
 </style>

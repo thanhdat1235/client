@@ -1,87 +1,151 @@
-html,
-body {
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  font-family: "Numans", sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
 }
-
-.container {
-  height: 100%;
-  align-content: center;
+.login-form{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 40px 0;
 }
-
-.card {
-  height: 370px;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 400px;
-  background-color: rgba(0, 0, 0, 0.5) !important;
+.form
+{
+    position: relative;
+    background: #060c21;
+    border: 1px solid #000;
+    width: 350px;
+    padding: 15px 40px 60px;
+    border-radius: 10px;
+    text-align: center;
 }
-
-.social_icon span {
-  font-size: 60px;
-  margin-left: 10px;
-  color: #ffc312;
+.form::before
+{
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    background: linear-gradient(315deg,#e91e63,#5d02ff);
+    z-index: -1;
+    transform: skew(2deg,1deg);
+    border-radius: 10px;
 }
-
-.social_icon span:hover {
-  color: white;
-  cursor: pointer;
+.form h2
+{
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 5px;
 }
-
-.card-header h3 {
-  color: white;
+.form .input
+{
+    margin-top: 40px;
+    text-align: left;
 }
-
-.social_icon {
-  position: absolute;
-  right: 20px;
-  top: -45px;
+.form .input .inputBox
+{
+    margin-top: 10px;
 }
-
-.input-group-prepend span {
-  width: 50px;
-  background-color: #ffc312;
-  color: black;
-  border: 0 !important;
+.form .input .inputBox label
+{
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
-
-input:focus {
-  outline: 0 0 0 0 !important;
-  box-shadow: 0 0 0 0 !important;
+.form .input .inputBox input
+{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 5px 15px;
+    background:linear-gradient(315deg,#e91e63,#5d02ff) ;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 10px;
 }
-
-.remember {
-  color: white;
+.form .input .inputBox input[type="submit"]
+{
+    cursor: pointer;
+    margin-top: 20px;
+    letter-spacing: 1px;
 }
-
-.remember input {
-  width: 20px;
-  height: 20px;
-  margin-left: 15px;
-  margin-right: 5px;
+.form .input .inputBox input[type="submit"]:hover
+{
+    background:linear-gradient(315deg,#5d02ff,#e91e63) ;
 }
-
-.login_btn {
-  color: black;
-  background-color: #ffc312;
-  width: 100px;
+.form .input .inputBox input[type="submit"]:active
+{
+    color: rgba(255, 255, 255, 0.521);
+    background:linear-gradient(315deg,#e91e6271,#5f02ff8c) ;
 }
-
-.login_btn:hover {
-  color: black;
-  background-color: white;
+.forgot
+{
+    margin-top: 10px;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
-
-.links {
-  color: white;
+.forgot a
+{
+    color: #ff0800;
 }
-
-.links a {
-  margin-left: 4px;
+.social
+{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+.social a
+{
+    width: 75%;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    background: transparent;
+    border: 3px solid #222;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 
-.h-100 {
-  padding: 150px 0;
+}
+.social a i
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+}
+.social a p
+{
+    color: #fff;
+    font-size: 15px;
+    margin-left: 10px;
+    letter-spacing: 1px;
+}
+.social a:hover
+{
+    background: linear-gradient(315deg,#326cd6,#5d02ff);
+}
+.social a:hover i
+{
+    filter: invert(1);
+}
+.social a:active
+{
+    background:linear-gradient(315deg,#5d02ff,#e91e63)
 }
