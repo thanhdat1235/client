@@ -1,4 +1,4 @@
-@import './mixin.scss';
+@import "./mixin.scss";
 @-ms-viewport {
   width: device-width;
 }
@@ -17,7 +17,7 @@ body {
   width: 100%;
   max-width: 100%;
   margin: auto;
- 
+
   background: $white-cl;
   position: relative;
   // .container-fluid__vuejs {

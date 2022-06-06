@@ -93,11 +93,39 @@ $cubic: cubic-bezier(0.84, 0.13, 0.33, 0.97);
 }
 
 $fm-beM500: "beMedium500";
-$fm-beR400:  'Be Vietnam Pro', sans-serif;
+$fm-beR400: "Be Vietnam Pro", sans-serif;
 $fm-roR400: "roRegular400";
 $fs-44: 44px;
 $fs-24: 24px;
 $fs-20: 20px;
 $fs-14: 14px;
-
 $lh-20: 20px;
+
+@media screen and(min-width: 1904px) {
+  .container {
+    max-width: 1204px !important;
+  }
+  .price .container .price__content .wrapper__item-slider .price__content-item {
+    width: 290px;
+  }
+  .feedback .--container__feedback .feedback__slider-btn {
+    bottom: 30px;
+  }
+  .blog {
+    margin-bottom: 160px;
+  }
+}
+
+@media screen and(min-width: 1264px) {
+  .container {
+    max-width: 1204px !important;
+  }
+}
+
+@media screen and(max-width: 1256px) {
+  .price .container .price__content {
+    overflow-x: scroll;
+    overflow-y: visible;
+    z-index: 2;
+  }
+}
