@@ -1,112 +1,476 @@
 <template>
-  <form>
-    <v-text-field
-      v-model="name"
-      :error-messages="nameErrors"
-      :counter="10"
-      label="Name"
-      required
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
-    ></v-text-field>
-    <v-text-field
-      v-model="email"
-      :error-messages="emailErrors"
-      label="E-mail"
-      required
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
-    ></v-text-field>
-    <v-select
-      v-model="select"
-      :items="items"
-      :error-messages="selectErrors"
-      label="Item"
-      required
-      @change="$v.select.$touch()"
-      @blur="$v.select.$touch()"
-    ></v-select>
-    <v-checkbox
-      v-model="checkbox"
-      :error-messages="checkboxErrors"
-      label="Do you agree?"
-      required
-      @change="$v.checkbox.$touch()"
-      @blur="$v.checkbox.$touch()"
-    ></v-checkbox>
-
-    <v-btn class="mr-4" @click="submit"> submit </v-btn>
-    <v-btn @click="clear"> clear </v-btn>
-  </form>
+  <main class="mainwrapper">
+    <section class="download">
+      <img src="../public/img/bg_home.png" alt="" />
+      <div class="wrapper__text">
+        <h2 class="download__title">Phầm mềm quản lý Addy Print</h2>
+        <p class="download__param">
+          Giải pháp số tốt nhất dành cho riêng cho ngành in ấn
+        </p>
+        <div class="download__btn">
+          <div class="btn__vuejs download__btn-windows">
+            <a href="#">
+              <img src="../public/img/download-windowns.png" alt="" />
+            </a>
+          </div>
+          <div class="btn__vuejs download__btn-chplay">
+            <a href="#">
+              <img src="../public/img/chplay_download.png" alt="" />
+            </a>
+          </div>
+          <div class="btn__vuejs download__btn-appstore">
+            <a href="#">
+              <img src="../public/img/appstore.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="problems">
+      <div class="container">
+        <h2>Vấn đề gặp phải</h2>
+        <div class="problems__grid">
+          <div class="problems__grid-item --left">
+            <img src="../public/img/FAQ.png" alt="" />
+          </div>
+          <div class="problems__grid-item --right">
+            <div class="item">
+              <div class="item__icon">
+                <i><img src="../public/img/icon-FAQ1.png" alt="" /></i>
+              </div>
+              <div class="item__text">
+                <h3>Không tìm được phần mềm quản lý file tối ưu</h3>
+                <p>
+                  Bạn đang đau đầu vì phải quản lý quá nhiều file in ấn của
+                  khách hàng mỗi ngày và đôi khi không thể kiểm soát được...
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item__icon">
+                <i><img src="../public/img/icon-FAQ2.png" alt="" /></i>
+              </div>
+              <div class="item__text">
+                <h3>Mất quá nhiều thời gian</h3>
+                <p>
+                  Bạn vừa phải quản lý file vừa quản lý ngân sách thu chi hàng
+                  ngày mất quá nhiều thời gian nhưng không đem lại hiệu quả tốt
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item__icon">
+                <i><img src="../public/img/icon-FAQ3.png" alt="" /></i>
+              </div>
+              <div class="item__text">
+                <h3>Thu chi thất thoát do không được quản lý</h3>
+                <p>
+                  Bạn vừa phải quản lý file vừa quản lý ngân sách thu chi hàng
+                  ngày mất quá nhiều thời gian nhưng không đem lại hiệu quả tốt
+                </p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item__icon">
+                <i><img src="../public/img/icon-FAQ4.png" alt="" /></i>
+              </div>
+              <div class="item__text">
+                <h3>Tốn quá nhiều chi phí không cần thiết</h3>
+                <p>
+                  Bạn vừa phải quản lý file vừa quản lý ngân sách thu chi hàng
+                  ngày mất quá nhiều thời gian nhưng không đem lại hiệu quả tốt
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="profit">
+      <div class="container">
+        <h2>Lợi ích</h2>
+        <div class="profit__content">
+          <div class="profit__content-item">
+            <i><img src="../public/img/icon-test.png" alt="" /></i>
+            <h3 class="title">Lợi ích mang lại</h3>
+            <p class="param">
+              Design your future. Share your strategy with the people
+              responsible for delivering it. Create clarity and buy-in.
+            </p>
+          </div>
+          <div class="profit__content-item">
+            <i><img src="../public/img/Icon-loiich-1.png" alt="" /></i>
+            <h3 class="title">Lợi ích mang lại</h3>
+            <p class="param">
+              Design your future. Share your strategy with the people
+              responsible for delivering it. Create clarity and buy-in.
+            </p>
+          </div>
+          <div class="profit__content-item">
+            <i><img src="../public/img/icon-loiich-2.png" alt="" /></i>
+            <h3 class="title">Lợi ích mang lại</h3>
+            <p class="param">
+              Design your future. Share your strategy with the people
+              responsible for delivering it. Create clarity and buy-in.
+            </p>
+          </div>
+          <div class="profit__content-item">
+            <i><img src="../public/img/icon-test.png" alt="" /></i>
+            <h3 class="title">Lợi ích mang lại</h3>
+            <p class="param">
+              Design your future. Share your strategy with the people
+              responsible for delivering it. Create clarity and buy-in.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="price">
+      <div class="container --container__price">
+        <h2>Bảng giá</h2>
+        <div class="price__content">
+          <div class="--first">
+            <div class="item --title">
+              <p>Tính năng sản phẩm</p>
+            </div>
+            <div class="item">
+              <p>
+                Quản lý được hiệu suất làm việc, tối ưu hoá quản lý thông tin.
+              </p>
+            </div>
+            <div class="item">
+              <p>
+                Quản lý được hiệu suất làm việc, tối ưu hoá quản lý thông tin.
+              </p>
+            </div>
+            <div class="item">
+              <p>
+                Quản lý được hiệu suất làm việc, tối ưu hoá quản lý thông tin.
+              </p>
+            </div>
+            <div class="item">
+              <p>
+                Quản lý được hiệu suất làm việc, tối ưu hoá quản lý thông tin.
+              </p>
+            </div>
+            <div class="item">
+              <p>
+                Quản lý được hiệu suất làm việc, tối ưu hoá quản lý thông tin.
+              </p>
+            </div>
+            <div class="item">
+              <p>
+                Quản lý được hiệu suất làm việc, tối ưu hoá quản lý thông tin.
+              </p>
+            </div>
+            <div class="item">
+              <p>
+                Quản lý được hiệu suất làm việc, tối ưu hoá quản lý thông tin.
+              </p>
+            </div>
+            <div class="--bottom"></div>
+          </div>
+          <div class="wrapper__item-slider">
+            <div class="price__content-item">
+              <div class="--title">
+                <h4>Miễn phí</h4>
+                <p><span>Ođ</span>/Tháng</p>
+                <div class="favorite">
+                  <p>Yêu thích</p>
+                </div>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-error.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-error.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="--bottom">
+                <a href="#" class="item-btn">
+                  <p>Mua ngay</p>
+                </a>
+              </div>
+            </div>
+            <div class="price__content-item">
+              <div class="--title">
+                <h4>Cơ bản</h4>
+                <p><span>199.000đ</span>/Tháng</p>
+                <div class="favorite">
+                  <p>Yêu thích</p>
+                </div>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="--bottom">
+                <a href="#" class="item-btn">
+                  <p>Mua ngay</p>
+                </a>
+              </div>
+            </div>
+            <div class="price__content-item">
+              <div class="--title">
+                <h4>Nâng cao</h4>
+                <p><span>299.000đ</span>/Tháng</p>
+                <div class="favorite">
+                  <p>Yêu thích</p>
+                </div>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="item --bg__pink">
+                <i><img src="../public/img/Check-succes.png" alt="" /></i>
+              </div>
+              <div class="--bottom">
+                <a href="#" class="item-btn">
+                  <p>Mua ngay</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="story">
+      <div class="container">
+        <h2>Câu chuyện thành công</h2>
+        <div class="story__content">
+          <div class="story__content-img">
+            <img src="../public/img/story-succes.png" alt="" />
+          </div>
+          <div class="story__content-text">
+            <p class="param">
+              “Peboo enabled everyone in our organization to focus on results
+              that matter, and got everyone pointed in the same direction.”
+            </p>
+            <p class="author">Shannon Lincoln</p>
+            <p class="author-detail">VP Finance, Shippo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="feedback">
+      <div class="container --container__feedback">
+        <h2>Phản hồi từ khách hàng</h2>
+        <flickity
+          ref="flickity"
+          :options="flickityOptions"
+          class="feedback__slider"
+        >
+          <div class="feedback__slider-item carousel-cell">
+            <div class="feedback__slider-text">
+              <div class="author">
+                <p class="name">Justin Alins</p>
+                <p class="job">Product Designer</p>
+              </div>
+              <div class="param">
+                <p>
+                  “Really Jobfind is the best platform to get any kind of job,
+                  aspecially their support was awesome, They have tried to level
+                  best to give best support of new candidate.”
+                </p>
+                <div class="vote">
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                </div>
+              </div>
+            </div>
+            <div class="feedback__slider-img">
+              <img src="../public/img/feedback-of-customer.png" alt="" />
+            </div>
+          </div>
+          <div class="feedback__slider-item carousel-cell">
+            <div class="feedback__slider-text">
+              <div class="author">
+                <p class="name">Justin Alins</p>
+                <p class="job">Product Designer</p>
+              </div>
+              <div class="param">
+                <p>
+                  “Really Jobfind is the best platform to get any kind of job,
+                  aspecially their support was awesome, They have tried to level
+                  best to give best support of new candidate.”
+                </p>
+                <div class="vote">
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                </div>
+              </div>
+            </div>
+            <div class="feedback__slider-img">
+              <img src="../public/img/feedback-of-customer.png" alt="" />
+            </div>
+          </div>
+          <div class="feedback__slider-item carousel-cell">
+            <div class="feedback__slider-text">
+              <div class="author">
+                <p class="name">Justin Alins</p>
+                <p class="job">Product Designer</p>
+              </div>
+              <div class="param">
+                <p>
+                  “Really Jobfind is the best platform to get any kind of job,
+                  aspecially their support was awesome, They have tried to level
+                  best to give best support of new candidate.”
+                </p>
+                <div class="vote">
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                  <i><img src="../public/img/star.png" alt="" /></i>
+                </div>
+              </div>
+            </div>
+            <div class="feedback__slider-img">
+              <img src="../public/img/feedback-of-customer.png" alt="" />
+            </div>
+          </div>
+        </flickity>
+        <div class="feedback__slider-btn">
+          <div @click="previous()" class="btn__vuejs btn__prev">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+          <div @click="next()" class="btn__vuejs btn__next">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contact">
+      <div class="container">
+        <div class="contact__title">
+          <h2>Nếu có bất kì câu hỏi nào, hãy liên hệ ngay với chúng tôi.</h2>
+        </div>
+        <div class="contact__btn">
+          <a href="#" class="btn__vuejs hotline">
+            <i><img src="../public/img/Calling.png" alt="" /></i>
+            <p>Hotline<span>(+84) 2862585167</span></p>
+          </a>
+          <a href="#" class="btn__vuejs email">
+            <i><img src="../public/img/email.png" alt="" /></i>
+            <p>Email<span>contact@trolyzalo.vn</span></p>
+          </a>
+        </div>
+      </div>
+      <div class="contact__form">
+        <div class="container">
+          <div class="contact__form-content">
+            <div class="content__img">
+              <img src="../public/img/img-form-contact.png" alt="" />
+            </div>
+            <div class="content__form">
+              <h2>Thông tin liên hệ</h2>
+              <form action="">
+                <input type="text" class="name" placeholder="Họ & Tên *" />
+                <input
+                  type="text"
+                  class="number-phone"
+                  placeholder="Số điện thoại *"
+                />
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="4"
+                  placeholder="Nhu cầu của bạn"
+                ></textarea>
+                <button class="btn__submit">
+                  <p>Gửi thông tin</p>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required, maxLength, email } from "vuelidate/lib/validators";
-
+import Flickity from "vue-flickity";
 export default {
-  mixins: [validationMixin],
-
-  validations: {
-    name: { required, maxLength: maxLength(10) },
-    email: { required, email },
-    select: { required },
-    checkbox: {
-      checked(val) {
-        return val;
+  name: "HomePage",
+  components: {
+    Flickity,
+  },
+  data() {
+    return {
+      flickityOptions: {
+        initialIndex: 3,
+        prevNextButtons: false,
+        pageDots: false,
+        wrapAround: true,
       },
-    },
+    };
   },
-
-  data: () => ({
-    name: "",
-    email: "",
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false,
-  }),
-
-  computed: {
-    checkboxErrors() {
-      const errors = [];
-      if (!this.$v.checkbox.$dirty) return errors;
-      !this.$v.checkbox.checked && errors.push("You must agree to continue!");
-      return errors;
-    },
-    selectErrors() {
-      const errors = [];
-      if (!this.$v.select.$dirty) return errors;
-      !this.$v.select.required && errors.push("Item is required");
-      return errors;
-    },
-    nameErrors() {
-      const errors = [];
-      if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.maxLength &&
-        errors.push("Name must be at most 10 characters long");
-      !this.$v.name.required && errors.push("Name is required.");
-      return errors;
-    },
-    emailErrors() {
-      const errors = [];
-      if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.email && errors.push("Must be valid e-mail");
-      !this.$v.email.required && errors.push("E-mail is required");
-      return errors;
-    },
-  },
-
   methods: {
-    submit() {
-      this.$v.$touch();
+    next() {
+      this.$refs.flickity.next();
     },
-    clear() {
-      this.$v.$reset();
-      this.name = "";
-      this.email = "";
-      this.select = null;
-      this.checkbox = false;
+
+    previous() {
+      this.$refs.flickity.previous();
     },
   },
 };
 </script>
+
+<style lang="scss">
+@import "../assets/scss/home.scss";
+</style>

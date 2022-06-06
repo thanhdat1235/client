@@ -1,0 +1,239 @@
+@import './fonts.scss';
+// css footer
+footer {
+    height: 370px;
+    background-color: #ffe7e1;
+    display: flex;
+    .--container__footer {
+      margin: auto;
+      .wrapper__gird {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 50px;
+        height: 100%;
+        .wrapper__gird-item {
+          .title {
+            margin-bottom: 15px;
+            h2 {
+              font-family: 'Inter', sans-serif;
+              font-weight: 500;
+              font-size: 35px;
+              line-height: 40px;
+              color: $primary-cl;
+            }
+            h3 {
+              font-family: 'Be Vietnam Pro', sans-serif;
+              font-weight: 500;
+              font-size: 24px;
+              line-height: 41px;
+              text-align: center;
+            }
+          }
+          .text__content {
+            p {
+              font-family: 'Be Vietnam Pro', sans-serif;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 21px;
+              margin-bottom: 16px;
+              span {
+                color: $primary-cl;
+              }
+              a {
+                color: #141414;
+                &:hover {
+                  text-decoration: underline;
+                  color: blue;
+                }
+              }
+            }
+          }
+        }
+        .--nthchild1 {
+          .title {
+            h3 {
+              margin-left: 10px;
+            }
+          }
+        }
+        .--nthchild2 {
+          padding-left: 30px;
+          .title {
+            h3 {
+            }
+          }
+          .text__content {
+            display: flex;
+            flex-direction: column;
+            a {
+              font-family:  'Be Vietnam Pro', sans-serif;
+              font-size: 16px;
+              line-height: 21px;
+              margin-bottom: 16px;
+              color: #141414;
+              &:hover {
+                text-decoration: underline;
+                color: blue;
+              }
+            }
+          }
+        }
+        .--nthchild3 {
+          .title {
+            h3 {
+              font-size: 23px;
+            }
+          }
+          .icon__content {
+            display: flex;
+            a {
+              margin: 9px;
+            }
+          }
+          > img {
+            margin-top: 20px;
+          }
+        }
+        .--nthchild4 {
+          padding-left: 30px;
+          .btn__download {
+            .btn__vuejs {
+              a {
+                display: block;
+              }
+            }
+            .btn__download-windowns {
+              margin-bottom: 17px;
+              margin-right: 20px;
+            }
+            .btn__download-chplay {
+              margin-bottom: 17px;
+            }
+            .btn__download-appstore {
+              i {
+                color: #f4f7ff;
+              }
+            }
+          }
+        }
+      }
+      .backtotop {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: $primary-cl;
+        position: fixed;
+        right: 20px;
+        bottom: 50px;
+        cursor: pointer;
+        display: none;
+        z-index: 100;
+        &:hover {
+          background-color: #f4f7ff;
+          -webkit-box-shadow: 0px 0px 12px 0px #5e5d5d;
+          box-shadow: 0px 0px 12px 0px #5e5d5d;
+          i {
+            color: $primary-cl;
+          }
+        }
+        i {
+          margin: auto;
+          color: #f4f7ff;
+        }
+      }
+    }
+  }
+  
+  @media screen and(max-width: 993px) {
+    footer {
+      height: auto;
+      padding: 40px 0;
+    }
+    footer .--container__footer .wrapper__gird {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+    footer .--container__footer .wrapper__gird .--nthchild1 .title {
+      justify-content: center;
+    }
+    footer .--container__footer .wrapper__gird .--nthchild3 .icon__content {
+      justify-content: center;
+      i {
+        margin: 0 12px;
+      }
+    }
+    footer .--container__footer .wrapper__gird .--nthchild4 {
+      display: grid;
+      .btn__download {
+        margin: auto;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    footer
+      .--container__footer
+      .wrapper__gird
+      .--nthchild4
+      .btn__download
+      .btn__download-chplay {
+      margin-right: 20px;
+    }
+    footer
+      .--container__footer
+      .wrapper__gird
+      .wrapper__gird-item
+      .text__content
+      p {
+      font-size: 20px;
+    }
+    footer .--container__footer .wrapper__gird .--nthchild2 {
+      padding-left: 0;
+    }
+    footer .--container__footer .wrapper__gird .--nthchild4 {
+      padding-left: 0;
+    }
+  }
+  
+  @media screen and(max-width: 767px) {
+    footer
+      .--container__footer
+      .wrapper__gird
+      .wrapper__gird-item
+      .text__content
+      p {
+      line-height: 26px;
+    }
+    footer
+      .--container__footer
+      .wrapper__gird
+      .wrapper__gird-item
+      .text__content
+      p {
+      font-size: 16px;
+    }
+  }
+  
+  @media screen and(max-width: 576px) {
+    .btn__download-chplay.btn__vuejs {
+      margin-bottom: 0;
+    }
+    footer
+      .--container__footer
+      .wrapper__gird
+      .--nthchild4
+      .btn__download
+      .btn__vuejs {
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+  }
+  
+  @media screen and(max-width: 391px) {
+    footer .--container__footer .wrapper__gird .--nthchild3 > img {
+      width: 50%;
+      margin-top: 0;
+    }
+  }
+  

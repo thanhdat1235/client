@@ -1,5 +1,7 @@
 export const API_URL = "http://localhost:4001";
 
+export const SEARCH_URL = `${API_URL}/admin/search`;
+
 export const UPDATE_URL = `${API_URL}/admin/update/`;
 
 export const RESET_PASSWORD_URL = `${API_URL}/admin/reset-password/`;

@@ -33,4 +33,7 @@ export default {
   position: absolute;
   bottom: 0;
 }
+.content-wrapper {
+  height: 100vh;
+}
 </style>

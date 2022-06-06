@@ -7,7 +7,7 @@
         </div>
         <div class="row clearfix">
           <div class="">
-            <form>
+            <form class="form-padding">
               <span
                 v-if="
                   (!$v.dataUser.email.required || !$v.dataUser.email.email) &&
@@ -16,6 +16,7 @@
                 class="text-danger"
                 >Valid Email is required</span
               >
+              <label class="label-input">Email</label>
               <div class="input_field">
                 <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                 <input
@@ -47,6 +48,7 @@
               >
               <div class="row clearfix">
                 <div class="col_half">
+                  <label class="label-input">FirstName</label>
                   <div class="input_field">
                     <span><i aria-hidden="true" class="fa fa-user"></i></span>
                     <input
@@ -58,6 +60,7 @@
                   </div>
                 </div>
                 <div class="col_half">
+                  <label class="label-input">LastName</label>
                   <div class="input_field">
                     <span><i aria-hidden="true" class="fa fa-user"></i></span>
                     <input
@@ -76,6 +79,7 @@
               >
                 Gender is required</span
               >
+              <label class="label-input">Gender</label>
               <div class="input_field radio_option">
                 <input
                   v-model="dataUser.gender"
@@ -102,6 +106,7 @@
               >
                 Address is required</span
               >
+              <label class="label-input">Address</label>
               <div class="input_field select_option">
                 <select v-model="dataUser.address">
                   <option value="">Select your country</option>
@@ -110,6 +115,13 @@
                 </select>
                 <div class="select_arrow"></div>
               </div>
+              <span
+                v-if="!$v.dataUser.role.required && $v.dataUser.role.$dirty"
+                class="text-danger"
+              >
+                Role is required</span
+              >
+              <label class="label-input">Role</label>
               <div class="input_field select_option">
                 <select v-model="dataUser.role" :disabled="role">
                   <option value="">Select your role</option>
@@ -125,6 +137,8 @@
                 type="submit"
                 value="Update"
               />
+              <span class="text-danger">{{ errEdit }}</span>
+              <p class="forgot"><a href="/admin">Back to admin</a></p>
             </form>
           </div>
         </div>
@@ -159,6 +173,7 @@ export default {
       dataUser: {},
       userInfo: null,
       role: true,
+      errEdit: "",
     };
   },
 
@@ -189,6 +204,9 @@ export default {
         required,
       },
       address: {
+        required,
+      },
+      role: {
         required,
       },
     },
@@ -231,6 +249,7 @@ export default {
         this.$router.push({ path: "/admin" });
       } catch (error) {
         console.log(error);
+        this.errEdit = "Error! Error! An error occurred. Please try again. ";
       }
     },
   },

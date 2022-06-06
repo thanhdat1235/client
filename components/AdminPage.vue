@@ -27,8 +27,8 @@
           <div class="category-content">
             <ul id="fruits-nav" class="nav flex-column">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                <a href="#" class="nav-link cusor">
+                  <i class="fa-solid fa-square-envelope"></i>
                   <span class="email"> Email: </span>
                   <span class="data">
                     {{ userInfo ? `${userInfo.email}` : "email" }}
@@ -36,8 +36,8 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                <a href="#" class="nav-link cusor">
+                  <i class="fa-solid fa-user"></i>
                   <span class="email"> Name: </span>
                   <span class="data">
                     {{
@@ -49,8 +49,8 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                <a href="#" class="nav-link cusor">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
                   <span class="email"> Role: </span>
                   <span class="data">
                     {{ userInfo ? `${userInfo.role}` : "role" }}
@@ -67,23 +67,9 @@
                   aria-expanded="false"
                   aria-controls="other-fruits"
                 >
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   Logout
                 </a>
-                <ul id="other-fruits" class="flex-column collapse">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      Orange
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="fa fa-pencil" aria-hidden="true"></i>
-                      Kiwi
-                    </a>
-                  </li>
-                </ul>
                 <!-- /Sub Nav -->
               </li>
             </ul>
@@ -99,13 +85,13 @@
           <div class="category-content">
             <ul id="sidebar-editable-nav" class="nav flex-column">
               <li class="nav-item">
-                <a href="/admin/customers" class="nav-link">
+                <a href="/admin/customers" class="nav-link cusor">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                   customers
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/admin/resettest" class="nav-link">
+                <a href="/admin/resettest" class="nav-link cusor">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                   reset test
                 </a>
@@ -122,15 +108,28 @@
     <div class="content-wrapper">
       <div class="row clearfix">
         <div class="col-xs-12">
-          <h2>Table Users PrintM</h2>
-          <button
-            :style="{ cursor: cursor, backgroundColor: color, display: toggle }"
-            class="btn-danger delete-many"
-            type="submit"
-            @click.prevent="handleDeleteMany"
-          >
-            Delete
-          </button>
+          <div class="search-title">
+            <div class="left-content">
+              <h2>Table Users PrintM</h2>
+              <a class="text-primary" href="/register">Create new user</a>
+            </div>
+            <form class="form-inline">
+              <input
+                v-model="searchQuery"
+                @input="senData"
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0"
+                type="button"
+              >
+                Search
+              </button>
+            </form>
+          </div>
           <table class="table">
             <thead>
               <tr>
@@ -173,7 +172,7 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.gender }}</td>
                 <td>{{ user.address }}</td>
-                <td>
+                <td class="td-delete">
                   <button
                     @click="handleEdit(user._id)"
                     type="button"
@@ -181,46 +180,60 @@
                   >
                     Edit
                   </button>
-                  <button
-                    @click="handleDelete(user._id)"
-                    type="button"
-                    class="btn btn-danger"
-                  >
-                    Delete
-                  </button>
+                  <form class="form-delete">
+                    <button
+                      @click="handleDelete(user._id)"
+                      type="submit"
+                      class="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                  </form>
                 </td>
               </tr>
             </tbody>
           </table>
           <nav aria-label="Page navigation example" class="example">
-            <ul class="pagination">
-              <li @click="previousPage" :class="prev" class="page-item">
-                <span class="page-link">Previous</span>
-              </li>
-              <li class="page-item">
-                <a
-                  v-for="(total, index) in totalPages"
-                  :key="index"
-                  :class="checkActive(index + 1)"
-                  class="page-link"
-                  @click="assign(index)"
-                  href="#"
-                  >{{ index + 1 }}</a
-                >
-              </li>
-              <li @click="nextPage" :class="next" class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
-            </ul>
-            <select
-              @click="clickPage"
-              v-model="pageAble.pageSize"
-              name="pagesize"
-              id="pagesize"
+            <button
+              class="btn-danger delete-many"
+              type="submit"
+              @click.prevent="handleDeleteMany"
             >
-              <option value="5">5 User</option>
-              <option value="10">10 User</option>
-            </select>
+              Delete
+            </button>
+            <div class="right-page">
+              <ul class="pagination">
+                <li @click="previousPage" :class="prev" class="page-item">
+                  <span class="page-link">Previous</span>
+                </li>
+                <li class="page-item">
+                  <a
+                    v-for="(total, index) in totalPages"
+                    :key="index"
+                    :class="checkActive(index + 1)"
+                    class="page-link"
+                    @click="assign(index)"
+                    href="#"
+                    >{{ index + 1 }}</a
+                  >
+                </li>
+                <li @click="nextPage" :class="next" class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+              <div class="select-admin custom-select">
+                <select
+                  @click="clickPage"
+                  v-model="pageAble.pageSize"
+                  name="pagesize"
+                  id="pagesize"
+                >
+                  <i class="fa-solid fa-caret-down"></i>
+                  <option value="5">5 User</option>
+                  <option value="10">10 User</option>
+                </select>
+              </div>
+            </div>
           </nav>
         </div>
         <!-- end col -->
@@ -235,6 +248,7 @@ import userSevice from "../service/userService";
 import { formatDate } from "../utils/dateFormat";
 import adminService from "../service/adminService";
 import authenticationService from "../service/authenticationService";
+import searchService from "../service/searchService";
 export default {
   head: {
     title: "Admin Page",
@@ -246,6 +260,10 @@ export default {
   },
   data() {
     return {
+      searchQuery: null,
+      message: null,
+      typing: null,
+      debounce: null,
       active: "",
       prev: "disabled",
       next: "disabled",
@@ -254,8 +272,6 @@ export default {
       isCheck: false,
       isCheckAll: false,
       cursor: "",
-      toggle: "none",
-      color: "",
       items: [],
       totalElements: String,
       totalPages: String,
@@ -271,6 +287,26 @@ export default {
     this.getData();
   },
   methods: {
+    async senData(event) {
+      searchService
+        .search({
+          payload: this.searchQuery,
+        })
+        .then((res) => {
+          this.debounceSearch(event);
+          this.dataUser = res.data.payload;
+        })
+
+        .catch((error) => console.log(error));
+    },
+    debounceSearch(event) {
+      this.message = null;
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        this.typing = null;
+        this.message = event.target.value;
+      }, 600);
+    },
     async getData() {
       try {
         const res = await userSevice.getAllUser({
@@ -280,6 +316,16 @@ export default {
         this.dataUser = res.data.data;
         this.totalPages = res.data.totalPages;
         this.pageAble = res.data.pageAble;
+        if (this.pageAble.page == 1) {
+          this.prev = "disabled";
+        } else {
+          this.prev = "";
+        }
+        if (this.totalPages == this.pageAble.page) {
+          this.next = "disabled";
+        } else {
+          this.next = "";
+        }
       } catch (error) {
         console.log(error);
       }
@@ -326,7 +372,7 @@ export default {
         this.pageAble.page--; // For the previous page, you just increment 'skip' for the page size 'limit'
         this.getData();
         this.next = "";
-        if (this.pageAble.page == 1) {
+        if (this.pageAble.page >= 1) {
           this.prev = "disabled";
         } else {
           this.prev = "";
@@ -344,7 +390,7 @@ export default {
     async handleDelete(_id) {
       try {
         await adminService.deleteById({ id: _id });
-        alert("Oke");
+        this.$router.push({ path: "/admin" });
       } catch (error) {
         console.log(error);
       }
@@ -417,12 +463,15 @@ export default {
   .clearfix {
     width: 140%;
     .col-xs-12 {
-      width: 100%;
+      width: 75%;
       h2 {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        margin-left: 60px;
+        margin-right: 15px;
+        color: black;
       }
       .table {
         margin-left: 65px;
@@ -440,7 +489,7 @@ export default {
 
 .all-check {
   margin-top: -16px;
-  margin-left: -12px !important;
+  margin-left: -32px !important;
 }
 
 .form-check-input {
@@ -449,10 +498,11 @@ export default {
 
 .delete-many {
   display: block;
-  margin-left: 40px;
-  margin-bottom: 20px;
+  margin-left: 30px;
   border-radius: 3px;
-  padding: 4px 4px;
+  padding: 0px 10px;
+  height: 35px;
+  width: 70px;
 }
 
 .btn {
@@ -470,17 +520,26 @@ export default {
 
 .example {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 35px 25px;
   .page-link {
     padding: 10px 10px;
   }
+  .right-page {
+    display: flex;
+  }
 }
 
-#pagesize {
+.select-admin {
+  padding: 5px 10px;
   margin-left: 10px;
-  border: solid 1px gray;
-  padding: 0 10px;
+  height: 42px;
+  margin-right: -10px;
+  #pagesize {
+    padding: 0 10px;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .active {
@@ -491,5 +550,68 @@ export default {
 
 .page-item {
   display: flex;
+}
+.header-margin {
+  padding: 0 30px;
+}
+.btn-outline-success {
+  color: black;
+}
+.form-inline {
+  width: 292px;
+  display: flex;
+  background-color: #dbdffd !important;
+  border-radius: 5px !important;
+  height: 40px;
+  margin-right: 25px;
+}
+
+.sidebar-category {
+  padding: 0 20px;
+}
+
+.sidebar-user {
+  padding: 15px 0px;
+}
+.mr-sm-2 {
+  padding: 5px 15px;
+}
+
+.navbarText {
+  display: flex;
+}
+
+.search-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cusor {
+  cursor: auto;
+}
+
+.form-delete {
+  width: 33%;
+  border-radius: 5px;
+}
+
+.td-delete {
+  display: flex;
+}
+
+.left-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+    margin-right: 15px;
+    color: black;
+    margin-left: -55px;
+  }
 }
 </style>

@@ -26,8 +26,6 @@ $default-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
 html,
 body {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: $body-color;
-  background-color: #eeeded;
   height: 100%; // required for sticky sidebar
 }
 

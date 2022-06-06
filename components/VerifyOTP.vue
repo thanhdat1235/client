@@ -1,15 +1,17 @@
 <template>
   <div class="container-center">
+    <h2 class="otp">Enter your OTP code</h2>
     <form action="">
       <div class="form-group">
         <input v-model="dataUser.otp_code" type="text" name="otp" />
-        <label for="otp"><br />OTP Code</label>
+        <label for="otp">OTP Code</label>
         <span>enter OTP Code</span>
       </div>
 
       <button @click="getOTP" id="login-btn">Next</button>
+      <span class="text-danger error-forgot">{{ errOTP }}</span>
     </form>
-    <p>Back to signin? <a href="/login">Sign In</a></p>
+    <p class="remember">Back to signin? <a href="/login">Sign In</a></p>
   </div>
 </template>
 
@@ -29,6 +31,7 @@ export default {
       dataUser: {
         otp_code: "",
       },
+      errOTP: "",
     };
   },
   methods: {
@@ -42,9 +45,9 @@ export default {
           otp_code: this.dataUser.otp_code,
         });
         this.$router.push({ path: "/resetpassword?email=" + email });
-        console.log("oke");
       } catch (error) {
         console.log(error);
+        this.errOTP = "OTP does not match!";
       }
     },
   },
@@ -53,4 +56,7 @@ export default {
 
 <style lang="scss">
 @import "../assets/scss/forgotpassword.scss";
+.otp {
+  color: black;
+}
 </style>

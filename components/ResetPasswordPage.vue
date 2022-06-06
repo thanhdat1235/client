@@ -13,25 +13,26 @@
             name="password"
             required
           />
+          <span
+            v-if="!$v.dataUser.password.required && $v.dataUser.password.$dirty"
+            class="text-danger"
+          >
+            Password is required</span
+          >
+          <span
+            v-if="
+              (!$v.dataUser.password.minLength ||
+                !$v.dataUser.password.maxLength) &&
+              $v.dataUser.password.$dirty
+            "
+            class="text-danger"
+          >
+            Password must be between
+            {{ $v.dataUser.password.$params.minLength.min }} and
+            {{ $v.dataUser.password.$params.maxLength.max }} characters
+          </span>
         </div>
-        <span
-          v-if="!$v.dataUser.password.required && $v.dataUser.password.$dirty"
-          class="text-danger"
-        >
-          Password is required</span
-        >
-        <span
-          v-if="
-            (!$v.dataUser.password.minLength ||
-              !$v.dataUser.password.maxLength) &&
-            $v.dataUser.password.$dirty
-          "
-          class="text-danger"
-        >
-          Password must be between
-          {{ $v.dataUser.password.$params.minLength.min }} and
-          {{ $v.dataUser.password.$params.maxLength.max }} characters
-        </span>
+
         <div class="inputDiv">
           <label class="inputLabel" for="confirmPassword"
             >Confirm Password</label
@@ -42,35 +43,37 @@
             id="confirmPassword"
             name="confirmPassword"
           />
+          <span
+            v-if="
+              !$v.dataUser.confirmPassword.required &&
+              $v.dataUser.confirmPassword.$dirty
+            "
+            class="text-danger"
+          >
+            Confirm password is required</span
+          >
+          <span
+            v-if="
+              !$v.dataUser.confirmPassword.sameAsPassword &&
+              $v.dataUser.confirmPassword.$dirty
+            "
+            class="text-danger"
+          >
+            Passwords do NOT match
+          </span>
         </div>
-        <span
-          v-if="
-            !$v.dataUser.confirmPassword.required &&
-            $v.dataUser.confirmPassword.$dirty
-          "
-          class="text-danger"
-        >
-          Confirm password is required</span
-        >
-        <span
-          v-if="
-            !$v.dataUser.confirmPassword.sameAsPassword &&
-            $v.dataUser.confirmPassword.$dirty
-          "
-          class="text-danger"
-        >
-          Passwords do NOT match
-        </span>
         <div class="buttonWrapper">
           <button
             @click.prevent="resetPassword"
-            type="submit"
+            type="button"
             id="submitButton"
             class="submitButton pure-button pure-button-primary"
           >
             <span>Continue</span>
           </button>
         </div>
+        <span class="text-danger error-forgot">{{ errRSPW }}</span>
+        <p class="forgot"><a href="/login">Signin</a></p>
       </form>
     </div>
   </div>
@@ -101,6 +104,7 @@ export default {
         password: "",
         confirmPassword: "",
       },
+      errRSPW: "",
     };
   },
 
@@ -119,16 +123,18 @@ export default {
   },
 
   methods: {
-    async resetPassword() {
+    async resetPassword(e) {
+      e.preventDefault();
       this.$v.$touch();
       try {
-        await userSevice.resetpassword({
+        const newPass = await userSevice.resetpassword({
           email: this.$router.currentRoute.query.email,
           password: this.dataUser.password,
         });
-        this.$router.push({ path: "/login" });
+        return this.$router.push({ path: "/login" });
       } catch (error) {
         console.log(error);
+        this.errRSPW = "An error occurred, please try again!";
       }
     },
   },

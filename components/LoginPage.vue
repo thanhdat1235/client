@@ -5,7 +5,11 @@
       <div class="input">
         <div class="inputBox">
           <label for="">Username</label>
-          <input v-model="form.userName" type="text" />
+          <input
+            v-on:keyup.enter="onEnter"
+            v-model="form.userName"
+            type="text"
+          />
         </div>
         <span
           v-if="
@@ -17,7 +21,11 @@
         >
         <div class="inputBox">
           <label for="">Password</label>
-          <input v-model="form.password" type="password" />
+          <input
+            v-on:keyup.enter="onEnter"
+            v-model="form.password"
+            type="password"
+          />
         </div>
         <span
           v-if="!$v.form.password.required && $v.form.password.$dirty"
@@ -26,15 +34,11 @@
           Password is required</span
         >
         <span
-          v-if="
-            (!$v.form.password.minLength || !$v.form.password.maxLength) &&
-            $v.form.password.$dirty
-          "
+          v-if="!$v.form.password.minLength && $v.form.password.$dirty"
           class="text-danger"
         >
           Password must be between
           {{ $v.form.password.$params.minLength.min }} and
-          {{ $v.form.password.$params.maxLength.max }} characters
         </span>
         <div class="inputBox">
           <input @click="handleSubmit" type="submit" name="" value="Sign In" />
@@ -44,6 +48,7 @@
         Forgot Password? <a href="/forgotpassword">Click Here</a>
       </p>
       <p class="forgot"><a href="/register">Sign up</a></p>
+      <p class="text-danger">{{ errLogin }}</p>
       <div class="social">
         <a href="https://www.facebook.com/">
           <i class="fa-brands fa-facebook"></i>
@@ -63,12 +68,7 @@
 <script>
 import authenticationService from "../service/authenticationService";
 import { validationMixin } from "vuelidate";
-import {
-  required,
-  minLength,
-  maxLength,
-  email,
-} from "vuelidate/lib/validators";
+import { required, minLength, email } from "vuelidate/lib/validators";
 export default {
   mixins: [validationMixin],
   head: {
@@ -86,6 +86,7 @@ export default {
         password: "",
       },
       submitStatus: null,
+      errLogin: "",
     };
   },
 
@@ -97,15 +98,17 @@ export default {
       },
       password: {
         required,
-        maxLength: maxLength(12),
         minLength: minLength(6),
       },
     },
   },
 
   methods: {
+    onEnter() {
+      this.handleSubmit();
+    },
+
     async handleSubmit(e) {
-      e.preventDefault();
       this.$v.$touch();
       try {
         const response = await authenticationService.login({
@@ -117,6 +120,7 @@ export default {
         this.$router.push({ path: "/admin" });
       } catch (error) {
         console.log(error);
+        this.errLogin = "Email or password is incorrect";
       }
     },
   },

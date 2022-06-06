@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "InterRegular400";
+    src: url("../fonts/font-inter/Inter-Regular.ttf") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: "InterMedium500";
+    src: url("../fonts/font-inter/Inter-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: "ib";
+    src: url("../fonts/font-inter/Inter-Bold.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: "beMedium500";
+    src: url("../fonts/font-vietnampro/BeVietnamPro-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: "beRegular400";
+    src: url("../fonts/font-vietnampro/BeVietnamPro-Regular.ttf");
+    /* font-weight: 400; */
+    /* font-style: normal;
+    font-display: fallback; */
+}
+
+@font-face {
+    font-family: "roRegular400";
+    src: url("../fonts/font-roboto/Roboto-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: "InterBold700";
+    src: url("../fonts/font-inter/Inter-Bold.woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: fallback;
+}

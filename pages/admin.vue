@@ -12,6 +12,7 @@
           <div class="content-wrapper">
             <AdminPage />
           </div>
+
           <Footer />
         </div>
       </div>
@@ -25,6 +26,9 @@ import Footer from "../layout/partials/Footer.vue";
 import AdminPage from "../components/AdminPage.vue";
 export default {
   name: "admin",
+  data() {
+    return {};
+  },
   components: {
     Header,
     AdminPage,
@@ -33,4 +37,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scope="true"></style>
+<style lang="scss" scoped>
+.main-panel {
+  margin-top: 130px;
+}
+</style>

@@ -7,7 +7,7 @@
         </div>
         <div class="row clearfix">
           <div class="">
-            <form>
+            <form class="form-padding">
               <span
                 v-if="
                   (!$v.dataUser.email.required || !$v.dataUser.email.email) &&
@@ -16,6 +16,7 @@
                 class="text-danger"
                 >Valid Email is required</span
               >
+              <label class="label-input">Email</label>
               <div class="input_field">
                 <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                 <input
@@ -36,16 +37,14 @@
               >
               <span
                 v-if="
-                  (!$v.dataUser.password.minLength ||
-                    !$v.dataUser.password.maxLength) &&
-                  $v.dataUser.password.$dirty
+                  !$v.dataUser.password.minLength && $v.dataUser.password.$dirty
                 "
                 class="text-danger"
               >
-                Password must be between
-                {{ $v.dataUser.password.$params.minLength.min }} and
-                {{ $v.dataUser.password.$params.maxLength.max }} characters
+                Password must be
+                {{ $v.dataUser.password.$params.minLength.min }} characters
               </span>
+              <label class="label-input">Password</label>
               <div class="input_field">
                 <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                 <input
@@ -74,6 +73,7 @@
               >
                 Passwords do NOT match
               </span>
+              <label class="label-input">ConfirmPassword</label>
               <div class="input_field">
                 <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                 <input
@@ -104,6 +104,7 @@
               >
               <div class="row clearfix">
                 <div class="col_half">
+                  <label class="label-input">FirstName</label>
                   <div class="input_field">
                     <span><i aria-hidden="true" class="fa fa-user"></i></span>
                     <input
@@ -115,6 +116,7 @@
                   </div>
                 </div>
                 <div class="col_half">
+                  <label class="label-input">LastName</label>
                   <div class="input_field">
                     <span><i aria-hidden="true" class="fa fa-user"></i></span>
                     <input
@@ -133,6 +135,7 @@
               >
                 Gender is required</span
               >
+              <label class="label-input">Gender</label>
               <div class="input_field radio_option">
                 <input
                   v-model="dataUser.gender"
@@ -159,6 +162,7 @@
               >
                 Address is required</span
               >
+              <label class="label-input">Country</label>
               <div class="input_field select_option">
                 <select v-model="dataUser.address">
                   <option value="" disabled selected>
@@ -175,6 +179,8 @@
                 type="submit"
                 value="Register"
               />
+              <span class="text-danger">{{ errRegister }}</span>
+              <p class="forgot"><a href="/login">Signin</a></p>
             </form>
           </div>
         </div>
@@ -189,7 +195,6 @@ import { validationMixin } from "vuelidate";
 import {
   required,
   minLength,
-  maxLength,
   alpha,
   email,
   sameAs,
@@ -215,6 +220,7 @@ export default {
         gender: "",
         address: "",
       },
+      errRegister: "",
     };
   },
 
@@ -234,7 +240,6 @@ export default {
       },
       password: {
         required,
-        maxLength: maxLength(12),
         minLength: minLength(6),
       },
       confirmPassword: {
@@ -265,9 +270,11 @@ export default {
           gender: this.dataUser.gender,
           address: this.dataUser.address,
         });
-        this.$router.push({ path: "/" });
+        this.$router.push({ path: "/login" });
       } catch (error) {
         console.log(error);
+        this.errRegister =
+          "Error! Error! An error occurred. Please try again. ";
       }
     },
   },

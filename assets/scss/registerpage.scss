@@ -17,6 +17,11 @@ body {
 		height: 0;
 	}
 }
+
+.form-padding {
+  padding: 10px;
+}
+
 .form_wrapper {
 	background: #fff;
 	width: 400px;
@@ -278,6 +283,10 @@ body {
   border-color: #7b7b7b transparent transparent transparent;
 }
 
+.label-input {
+  font-size: 15px !important;
+  margin-bottom: 5px;
+}
 .select_option select {
   &:hover + .select_arrow, &:focus + .select_arrow {
     border-top-color: $black;
