@@ -18,7 +18,7 @@ export default {
   },
 
   head: {
-    title: "final-app-clien",
+    title: "Addy Print",
     htmlAttrs: {
       lang: "en",
     },

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import userSevice from "../service/userService";
+import userSevice from "../../service/userService";
 export default {
   head: {
     title: "VerifyOTP Page",
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/forgotpassword.scss";
+@import "../../assets/scss/forgotpassword.scss";
 .otp {
   color: black;
 }

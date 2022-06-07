@@ -12,11 +12,18 @@
 </template>
 
 <script>
-import Header from "../layout/partials/Header.vue";
-import LoginPage from "../components/LoginPage.vue";
-import Footer from "../layout/partials/Footer.vue";
+import Header from "../../layout/partials/Header.vue";
+import LoginPage from "../../components/admin/LoginPage.vue";
+import Footer from "../../layout/partials/Footer.vue";
 export default {
-  name: "loginpage",
+  head: {
+    title: "LoginPage",
+    meta: [
+      {
+        name: "loginpage",
+      },
+    ],
+  },
   components: {
     Header,
     LoginPage,

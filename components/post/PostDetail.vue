@@ -1,9 +1,9 @@
 <template>
   <main class="mainwrapper">
     <section class="search">
-      <img src="../public/img/bg-search.jpg" alt="background" />
+      <img src="../../public/img/bg-search.jpg" alt="background" />
       <div class="search__input">
-        <i><img src="../public/img/icon-search.png" alt="icon search" /></i>
+        <i><img src="../../public/img/icon-search.png" alt="icon search" /></i>
         <input type="text" placeholder="Tìm kiếm bài viết" />
       </div>
     </section>
@@ -26,7 +26,7 @@
             </div>
             <div class="blog-detail__img">
               <img
-                src="../public/img/img__blog-detail.jpg"
+                src="../../public/img/img__blog-detail.jpg"
                 alt="image blog detail"
               />
               <div class="description__img">
@@ -83,10 +83,10 @@
           <div class="blog-sidebar">
             <div class="thumbnail">
               <div class="thumbnail__one --thumbnail">
-                <img src="../public/img/thumbnail-1.jpg" alt="" />
+                <img src="../../public/img/thumbnail-1.jpg" alt="" />
               </div>
               <div class="thumbnail__two --thumbnail">
-                <img src="../public/img/thumbnail-2.jpg" alt="" />
+                <img src="../../public/img/thumbnail-2.jpg" alt="" />
               </div>
             </div>
             <div class="featured__posts">
@@ -94,7 +94,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kĩ năng quản lý</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>23/05/2022</span>
                 </div>
                 <div class="text">
@@ -104,7 +104,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Lý thuyết quản trị</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>20/05/2022</span>
                 </div>
                 <div class="text">
@@ -117,7 +117,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kỹ năng lãnh đạo</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>19/05/2022</span>
                 </div>
                 <div class="text">
@@ -129,7 +129,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kỹ năng lãnh đạo</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>19/05/2022</span>
                 </div>
                 <div class="text">
@@ -141,7 +141,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kỹ năng lãnh đạo</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>19/05/2022</span>
                 </div>
                 <div class="text">
@@ -158,7 +158,7 @@
           <div class="bottom__line">
             <div class="blog__same-item">
               <a href="">
-                <img src="../public/img/blog-same1.jpg" alt="" />
+                <img src="../../public/img/blog-same1.jpg" alt="" />
               </a>
               <div class="description__item">
                 <h4>
@@ -172,7 +172,7 @@
                 </p>
                 <div class="date">
                   <h5>Kĩ năng quản lý</h5>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <p>23/05/2022</p>
                 </div>
               </div>
@@ -181,7 +181,7 @@
           <div class="bottom__line">
             <div class="blog__same-item">
               <a href="">
-                <img src="../public/img/blog-same2.jpg" alt="" />
+                <img src="../../public/img/blog-same2.jpg" alt="" />
               </a>
               <div class="description__item">
                 <h4>
@@ -195,7 +195,7 @@
                 </p>
                 <div class="date">
                   <h5>Kĩ năng quản lý</h5>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <p>23/05/2022</p>
                 </div>
               </div>
@@ -204,7 +204,7 @@
           <div class="bottom__line">
             <div class="blog__same-item">
               <a href="">
-                <img src="../public/img/blog-same3.jpg" alt="" />
+                <img src="../../public/img/blog-same3.jpg" alt="" />
               </a>
               <div class="description__item">
                 <h4>
@@ -218,7 +218,7 @@
                 </p>
                 <div class="date">
                   <h5>Kĩ năng quản lý</h5>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <p>23/05/2022</p>
                 </div>
               </div>
@@ -227,7 +227,7 @@
           <div class="bottom__line">
             <div class="blog__same-item">
               <a href="">
-                <img src="../public/img/blog-same4.jpg" alt="" />
+                <img src="../../public/img/blog-same4.jpg" alt="" />
               </a>
               <div class="description__item">
                 <h4>
@@ -241,7 +241,7 @@
                 </p>
                 <div class="date">
                   <h5>Kĩ năng quản lý</h5>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <p>23/05/2022</p>
                 </div>
               </div>
@@ -250,7 +250,7 @@
           <div class="bottom__line">
             <div class="blog__same-item">
               <a href="">
-                <img src="../public/img/blog-same5.jpg" alt="" />
+                <img src="../../public/img/blog-same5.jpg" alt="" />
               </a>
               <div class="description__item">
                 <h4>
@@ -264,7 +264,7 @@
                 </p>
                 <div class="date">
                   <h5>Kĩ năng quản lý</h5>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <p>23/05/2022</p>
                 </div>
               </div>
@@ -273,7 +273,7 @@
         </div>
         <div class="blog__comment">
           <div class="avatar">
-            <img src="../public/img/avt-comment.jpg" alt="" />
+            <img src="../../public/img/avt-comment.jpg" alt="" />
           </div>
           <textarea
             name=""
@@ -286,11 +286,11 @@
         <div class="blog__vote">
           <h4>Bài viết này hữu ích?</h4>
           <div class="star">
-            <i><img src="../public/img/vote-star.png" alt="icon star" /></i>
-            <i><img src="../public/img/vote-star.png" alt="icon star" /></i>
-            <i><img src="../public/img/vote-star.png" alt="icon star" /></i>
-            <i><img src="../public/img/vote-star.png" alt="icon star" /></i>
-            <i><img src="../public/img/vote-star5.png" alt="icon star" /></i>
+            <i><img src="../../public/img/vote-star.png" alt="icon star" /></i>
+            <i><img src="../../public/img/vote-star.png" alt="icon star" /></i>
+            <i><img src="../../public/img/vote-star.png" alt="icon star" /></i>
+            <i><img src="../../public/img/vote-star.png" alt="icon star" /></i>
+            <i><img src="../../public/img/vote-star5.png" alt="icon star" /></i>
           </div>
         </div>
         <div class="input__signup">
@@ -311,7 +311,7 @@
       </div>
     </section>
     <section class="icon__zalo-fixed">
-      <i><img src="../public/img/icon__zalo-fixed.png" alt="" /></i>
+      <i><img src="../../public/img/icon__zalo-fixed.png" alt="" /></i>
       <div class="text"><p>Bạn cần hỗ trợ gì?</p></div>
     </section>
   </main>
@@ -324,5 +324,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/postdetail.scss";
+@import "../../assets/scss/postdetail.scss";
 </style>

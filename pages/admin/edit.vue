@@ -20,11 +20,18 @@
 </template>
 
 <script>
-import Header from "../layout/partials/Header.vue";
-import Footer from "../layout/partials/Footer.vue";
-import EditPage from "../components/EditPage.vue";
+import Header from "../../layout/partials/Header.vue";
+import Footer from "../../layout/partials/Footer.vue";
+import EditPage from "../../components/admin/EditPage.vue";
 export default {
-  name: "edit",
+  head: {
+    title: "EditPage",
+    meta: [
+      {
+        name: "edit",
+      },
+    ],
+  },
   components: {
     Header,
     EditPage,

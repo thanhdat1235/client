@@ -13,12 +13,19 @@
 </template>
 
 <script>
-import Blog from "../components/Blog.vue";
+import Blog from "../components/admin/Blog.vue";
 import Header from "../layout/partials/Header.vue";
 import HomePage from "../components/HomePage.vue";
 import Footer from "../layout/partials/Footer.vue";
 export default {
-  name: "IndexPage",
+  head: {
+    title: "IndexPage",
+    meta: [
+      {
+        name: "IndexPage",
+      },
+    ],
+  },
   components: {
     Header,
     HomePage,

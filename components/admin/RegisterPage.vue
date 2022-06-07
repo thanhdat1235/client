@@ -190,7 +190,7 @@
 </template>
 
 <script>
-import registerSevice from "../service/registerService";
+import registerSevice from "../../service/registerService";
 import { validationMixin } from "vuelidate";
 import {
   required,
@@ -282,7 +282,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/registerpage.scss";
+@import "../../assets/scss/registerpage.scss";
 .form_register {
   margin-bottom: 60px;
 }

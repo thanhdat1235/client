@@ -5,7 +5,7 @@
         <Header />
         <div class="main-panel">
           <div class="content-wrapper">
-            <VerifyOTP />
+            <ForgotPassword />
           </div>
           <Footer />
         </div>
@@ -15,12 +15,21 @@
 </template>
 
 <script>
-import Header from "../layout/partials/Header.vue";
-import Footer from "../layout/partials/Footer.vue";
+import Header from "../../layout/partials/Header.vue";
+import Footer from "../../layout/partials/Footer.vue";
+import ForgotPassword from "../../components/admin/ForgotPasswordPage.vue";
 export default {
-  name: "forgot",
+  head: {
+    title: "Forgot Password",
+    meta: [
+      {
+        name: "forgot",
+      },
+    ],
+  },
   components: {
     Header,
+    ForgotPassword,
     Footer,
   },
 };
@@ -30,5 +39,8 @@ export default {
 .footer {
   position: absolute;
   bottom: 0;
+}
+.content-wrapper {
+  height: 100vh;
 }
 </style>

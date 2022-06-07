@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import authenticationService from "../service/authenticationService";
+import authenticationService from "../../service/authenticationService";
 import { validationMixin } from "vuelidate";
 import { required, minLength, email } from "vuelidate/lib/validators";
 export default {
@@ -117,7 +117,7 @@ export default {
         });
         localStorage.setItem("token", response.headers.authorization);
         localStorage.setItem("user", JSON.stringify(response.data));
-        this.$router.push({ path: "/admin" });
+        this.$router.push({ path: "/admin/admin" });
       } catch (error) {
         console.log(error);
         this.errLogin = "Email or password is incorrect";
@@ -128,7 +128,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/loginpage.scss";
+@import "../../assets/scss/loginpage.scss";
 .text-danger {
   margin-bottom: 10px;
 }

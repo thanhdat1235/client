@@ -23,3 +23,14 @@ export const DELETE_MANY_URL = `${API_URL}/admin/delete-many`;
 export const LOGOUT_URL = `${API_URL}/admin/logout`;
 
 export const GET_ALL_URL = `${API_URL}/admin/`;
+
+//  API_POST
+export const CREATE_POST_URL = `${API_URL}/post/create`;
+
+export const GET_ALL_POST_URL = `${API_URL}/post/`;
+
+export const UPDATE_POST_URL = `${API_URL}/post/update/`;
+
+export const GET_BY_ID_URL = `${API_URL}/post/findone/`;
+
+export const DELETE_POST_URL = `${API_URL}/post/delete`;

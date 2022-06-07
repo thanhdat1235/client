@@ -6,20 +6,27 @@
 "
     />
     <Header />
-    <Posts />
+    <PostDetail />
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from "../layout/partials/Header.vue";
-import Posts from "../components/Posts.vue";
-import Footer from "../layout/partials/Footer.vue";
+import Header from "../../layout/partials/Header.vue";
+import PostDetail from "../../components/post/PostDetail.vue";
+import Footer from "../../layout/partials/Footer.vue";
 export default {
-  name: "post-page",
+  head: {
+    title: "Post Detail",
+    meta: [
+      {
+        name: "post-detail",
+      },
+    ],
+  },
   components: {
     Header,
-    Posts,
+    PostDetail,
     Footer,
   },
 };

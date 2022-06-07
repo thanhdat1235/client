@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import userSevice from "../service/userService";
+import userSevice from "../../service/userService";
 import { validationMixin } from "vuelidate";
 import {
   required,
@@ -142,5 +142,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/resetpassword.scss";
+@import "../../assets/scss/resetpassword.scss";
 </style>

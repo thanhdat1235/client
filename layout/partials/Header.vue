@@ -3,7 +3,7 @@
     <div class="container --container__header">
       <div class="main__header home">
         <div class="main__header-logo">
-          <a href="/">
+          <NuxtLink to="/">
             <svg
               width="202"
               height="40"
@@ -16,7 +16,7 @@
                 fill="#D6192E"
               />
             </svg>
-          </a>
+          </NuxtLink>
         </div>
         <div class="main__header-nav">
           <ul class="list__option-vuejs">
@@ -27,7 +27,7 @@
               <NuxtLink to="#price">Báo giá</NuxtLink>
             </li>
             <li class="option-vuejs">
-              <NuxtLink to="/posts">Bài viết</NuxtLink>
+              <NuxtLink to="/post/posts">Bài viết</NuxtLink>
             </li>
             <li class="option-vuejs">
               <NuxtLink to="#contact">Liên hệ</NuxtLink>

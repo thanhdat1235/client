@@ -12,11 +12,18 @@
 </template>
 
 <script>
-import Header from "../layout/partials/Header.vue";
-import RegisterPage from "../components/RegisterPage.vue";
-import Footer from "../layout/partials/Footer.vue";
+import Header from "../../layout/partials/Header.vue";
+import RegisterPage from "../../components/admin/RegisterPage.vue";
+import Footer from "../../layout/partials/Footer.vue";
 export default {
-  name: "register",
+  head: {
+    title: "RegisterPage",
+    meta: [
+      {
+        name: "register",
+      },
+    ],
+  },
   components: {
     Header,
     RegisterPage,

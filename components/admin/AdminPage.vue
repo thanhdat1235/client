@@ -111,7 +111,14 @@
           <div class="search-title">
             <div class="left-content">
               <h2>Table Users PrintM</h2>
-              <a class="text-primary" href="/register">Create new user</a>
+              <div class="button-top">
+                <button type="button" class="btn btn-primary">
+                  <NuxtLink to="/admin/register">Tạo mới user</NuxtLink>
+                </button>
+                <button type="button" class="btn btn-primary">
+                  <NuxtLink to="/post/post-manager">Quản lí bài viết</NuxtLink>
+                </button>
+              </div>
             </div>
             <form class="form-inline">
               <input
@@ -244,11 +251,11 @@
 </template>
 
 <script>
-import userSevice from "../service/userService";
-import { formatDate } from "../utils/dateFormat";
-import adminService from "../service/adminService";
-import authenticationService from "../service/authenticationService";
-import searchService from "../service/searchService";
+import userSevice from "../../service/userService";
+import { formatDate } from "../../utils/dateFormat";
+import adminService from "../../service/adminService";
+import authenticationService from "../../service/authenticationService";
+import searchService from "../../service/searchService";
 export default {
   head: {
     title: "Admin Page",
@@ -381,7 +388,7 @@ export default {
     },
     handleEdit(_id) {
       try {
-        this.$router.push({ path: "/edit?id=" + _id });
+        this.$router.push({ path: "/admin/edit?id=" + _id });
       } catch (error) {
         console.log(error);
       }
@@ -456,7 +463,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/adminpage.scss";
+@import "../../assets/scss/adminpage.scss";
 .content-wrapper {
   padding: 35px 1.25rem;
   width: 80%;
@@ -604,14 +611,24 @@ export default {
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  a {
+  .button-top {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
-    margin-right: 15px;
-    color: black;
-    margin-left: -55px;
+    button {
+      // width: 102px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 10px;
+      // margin-left: -120px;
+      margin-bottom: 20px;
+      a {
+        color: black;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
   }
 }
 </style>

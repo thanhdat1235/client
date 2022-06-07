@@ -148,7 +148,7 @@
 </template>
 
 <script>
-import userSevice from "../service/userService";
+import userSevice from "../../service/userService";
 import { validationMixin } from "vuelidate";
 import {
   required,
@@ -246,7 +246,7 @@ export default {
             gender: this.dataUser.gender,
           },
         });
-        this.$router.push({ path: "/admin" });
+        this.$router.push({ path: "/admin/admin" });
       } catch (error) {
         console.log(error);
         this.errEdit = "Error! Error! An error occurred. Please try again. ";
@@ -257,7 +257,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/registerpage.scss";
+@import "../../assets/scss/registerpage.scss";
 .form_register {
   margin-bottom: 60px;
 }

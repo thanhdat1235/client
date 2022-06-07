@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import userSevice from "../service/userService";
+import userSevice from "../../service/userService";
 export default {
   head: {
     title: "Forgotpassword Page",
@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/forgotpassword.scss";
+@import "../../assets/scss/forgotpassword.scss";
 .remember {
   color: black;
 }

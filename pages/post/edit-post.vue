@@ -49,9 +49,9 @@
               <button
                 type="button"
                 class="btn btn-success success"
-                @click.prevent="getData"
+                @click.prevent="updateData"
               >
-                Đăng bài
+                Cập nhật
               </button>
               <button type="button" class="btn btn-secondary">
                 <NuxtLink to="/post/post-manager">Quay lại</NuxtLink>
@@ -66,19 +66,16 @@
 </template>
 
 <script>
-import Header from "../../layout/partials/Header.vue";
-import Footer from "../../layout/partials/Footer.vue";
 import postService from "../../service/postService";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
-
 export default {
   mixins: [validationMixin],
   head: {
-    title: "New Post",
+    title: "Edit Page",
     meta: [
       {
-        name: "create-post",
+        name: "edit-page",
       },
     ],
   },
@@ -97,61 +94,30 @@ export default {
       required,
     },
   },
-  components: {
-    Header,
-    Footer,
+  async mounted() {
+    try {
+      const id = this.$router.currentRoute.query.id;
+      const result = await postService.findById({ id });
+      this.category = result.data.category;
+      this.title = result.data.title;
+      this.ckeditor = result.data.ckeditor;
+    } catch (error) {
+      console.log(error);
+    }
   },
   methods: {
-    async getData() {
+    async updateData() {
+      const id = this.$router.currentRoute.query.id;
       this.$v.$touch();
-      try {
-        const newPost = await postService.createNewPost({
-          category: this.category,
-          title: this.title,
-          ckeditor: this.ckeditor,
-        });
-        this.$router.push({ path: "/post/post-manager" });
-      } catch (error) {
-        console.log(error);
-      }
+      await postService.updatePost({
+        id,
+        category: this.category,
+        title: this.title,
+        ckeditor: this.ckeditor,
+      });
     },
   },
 };
 </script>
 
-<style lang="scss">
-.editor {
-  margin-top: 120px !important;
-  .ck-editor__editable {
-    height: 500px;
-  }
-  .heading {
-    text-align: center;
-  }
-  .bottom-form {
-    margin-top: 15px;
-    display: flex;
-    .success {
-      margin-right: 10px;
-      font-weight: bold;
-    }
-    button {
-      a {
-        color: black;
-        font-weight: bold;
-      }
-    }
-  }
-  .input-group {
-    display: flex;
-    flex-flow: column;
-    margin-bottom: 10px;
-    input {
-      width: 100%;
-    }
-  }
-  label {
-    font-weight: bold;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

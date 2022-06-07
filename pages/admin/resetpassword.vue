@@ -15,10 +15,17 @@
 </template>
 
 <script>
-import Header from "../layout/partials/Header.vue";
-import Footer from "../layout/partials/Footer.vue";
+import Header from "../../layout/partials/Header.vue";
+import Footer from "../../layout/partials/Footer.vue";
 export default {
-  name: "resetpassword",
+  head: {
+    title: "ResetPasswordPage",
+    meta: [
+      {
+        name: "resetpassword",
+      },
+    ],
+  },
   components: {
     Header,
     Footer,

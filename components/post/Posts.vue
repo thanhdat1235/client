@@ -1,9 +1,9 @@
 <template>
   <main class="mainwrapper">
     <section class="search">
-      <img src="../public/img/bg-search.jpg" alt="background" />
+      <img src="../../public/img/bg-search.jpg" alt="background" />
       <div class="search__input">
-        <i><img src="../public/img/icon-search.png" alt="icon search" /></i>
+        <i><img src="../../public/img/icon-search.png" alt="icon search" /></i>
         <input type="text" placeholder="Tìm kiếm bài viết" />
       </div>
     </section>
@@ -13,14 +13,14 @@
           <div class="blog__content-item">
             <div class="item">
               <a href="post-detail" class="img">
-                <img src="../public/img/img-blog1.jpg" alt="" />
+                <img src="../../public/img/img-blog1.jpg" alt="" />
                 <div class="blog__description">
                   <div class="title">
                     <h4>Danh mục bài viết</h4>
                   </div>
                   <div class="text">
                     <div class="day">
-                      <i><img src="../public/img/day-white.png" alt="" /></i>
+                      <i><img src="../../public/img/day-white.png" alt="" /></i>
                       <p>Tháng 05/2022</p>
                     </div>
                     <div class="author">
@@ -43,14 +43,14 @@
             </div>
             <div class="item">
               <a href="post-detail" class="img">
-                <img src="../public/img/img-blog1.jpg" alt="" />
+                <img src="../../public/img/img-blog1.jpg" alt="" />
                 <div class="blog__description">
                   <div class="title">
                     <h4>Danh mục bài viết</h4>
                   </div>
                   <div class="text">
                     <div class="day">
-                      <i><img src="../public/img/day-white.png" alt="" /></i>
+                      <i><img src="../../public/img/day-white.png" alt="" /></i>
                       <p>Tháng 05/2022</p>
                     </div>
                     <div class="author">
@@ -73,14 +73,14 @@
             </div>
             <div class="item">
               <a href="post-detail" class="img">
-                <img src="../public/img/img-blog1.jpg" alt="" />
+                <img src="../../public/img/img-blog1.jpg" alt="" />
                 <div class="blog__description">
                   <div class="title">
                     <h4>Danh mục bài viết</h4>
                   </div>
                   <div class="text">
                     <div class="day">
-                      <i><img src="../public/img/day-white.png" alt="" /></i>
+                      <i><img src="../../public/img/day-white.png" alt="" /></i>
                       <p>Tháng 05/2022</p>
                     </div>
                     <div class="author">
@@ -103,14 +103,14 @@
             </div>
             <div class="item">
               <a href="post-detail" class="img">
-                <img src="../public/img/img-blog1.jpg" alt="" />
+                <img src="../../public/img/img-blog1.jpg" alt="" />
                 <div class="blog__description">
                   <div class="title">
                     <h4>Danh mục bài viết</h4>
                   </div>
                   <div class="text">
                     <div class="day">
-                      <i><img src="../public/img/day-white.png" alt="" /></i>
+                      <i><img src="../../public/img/day-white.png" alt="" /></i>
                       <p>Tháng 05/2022</p>
                     </div>
                     <div class="author">
@@ -133,14 +133,14 @@
             </div>
             <div class="item">
               <a href="post-detail" class="img">
-                <img src="../public/img/img-blog1.jpg" alt="" />
+                <img src="../../public/img/img-blog1.jpg" alt="" />
                 <div class="blog__description">
                   <div class="title">
                     <h4>Danh mục bài viết</h4>
                   </div>
                   <div class="text">
                     <div class="day">
-                      <i><img src="../public/img/day-white.png" alt="" /></i>
+                      <i><img src="../../public/img/day-white.png" alt="" /></i>
                       <p>Tháng 05/2022</p>
                     </div>
                     <div class="author">
@@ -163,14 +163,14 @@
             </div>
             <div class="item">
               <a href="post-detail" class="img">
-                <img src="../public/img/img-blog1.jpg" alt="" />
+                <img src="../../public/img/img-blog1.jpg" alt="" />
                 <div class="blog__description">
                   <div class="title">
                     <h4>Danh mục bài viết</h4>
                   </div>
                   <div class="text">
                     <div class="day">
-                      <i><img src="../public/img/day-white.png" alt="" /></i>
+                      <i><img src="../../public/img/day-white.png" alt="" /></i>
                       <p>Tháng 05/2022</p>
                     </div>
                     <div class="author">
@@ -209,7 +209,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kĩ năng quản lý</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>23/05/2022</span>
                 </div>
                 <div class="text">
@@ -219,7 +219,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Lý thuyết quản trị</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>20/05/2022</span>
                 </div>
                 <div class="text">
@@ -232,7 +232,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kỹ năng lãnh đạo</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>19/05/2022</span>
                 </div>
                 <div class="text">
@@ -244,7 +244,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kỹ năng lãnh đạo</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>19/05/2022</span>
                 </div>
                 <div class="text">
@@ -256,7 +256,7 @@
               <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Kỹ năng lãnh đạo</p>
-                  <i><img src="../public/img/dot.png" alt="dot" /></i>
+                  <i><img src="../../public/img/dot.png" alt="dot" /></i>
                   <span>19/05/2022</span>
                 </div>
                 <div class="text">
@@ -268,10 +268,10 @@
             </div>
             <div class="thumbnail">
               <div class="thumbnail__one --thumbnail">
-                <img src="../public/img/thumbnail-1.jpg" alt="" />
+                <img src="../../public/img/thumbnail-1.jpg" alt="" />
               </div>
               <div class="thumbnail__two --thumbnail">
-                <img src="../public/img/thumbnail-2.jpg" alt="" />
+                <img src="../../public/img/thumbnail-2.jpg" alt="" />
               </div>
             </div>
           </div>
@@ -308,7 +308,7 @@
       </div>
     </section>
     <section class="icon__zalo-fixed">
-      <i><img src="../public/img/icon__zalo-fixed.png" alt="" /></i>
+      <i><img src="../../public/img/icon__zalo-fixed.png" alt="" /></i>
       <div class="text"><p>Bạn cần hỗ trợ gì?</p></div>
     </section>
   </main>
@@ -321,5 +321,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/post.scss";
+@import "../../assets/scss/post.scss";
 </style>

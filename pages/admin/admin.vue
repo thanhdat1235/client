@@ -21,11 +21,18 @@
 </template>
 
 <script>
-import Header from "../layout/partials/Header.vue";
-import Footer from "../layout/partials/Footer.vue";
-import AdminPage from "../components/AdminPage.vue";
+import Header from "../../layout/partials/Header.vue";
+import Footer from "../../layout/partials/Footer.vue";
+import AdminPage from "../../components/admin/AdminPage.vue";
 export default {
-  name: "admin",
+  head: {
+    title: "Admin Page",
+    meta: [
+      {
+        name: "admin",
+      },
+    ],
+  },
   data() {
     return {};
   },
