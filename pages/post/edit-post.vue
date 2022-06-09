@@ -3,7 +3,7 @@
     <Header class="header-news-post" />
     <div class="container">
       <form action="" class="editor">
-        <h1 class="heading">Đăng bài viết</h1>
+        <h1 class="heading">Chỉnh sửa bài viết</h1>
         <div>
           <div class="input-group">
             <label for="category">Danh mục bài viết:</label>
