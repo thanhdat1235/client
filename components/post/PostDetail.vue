@@ -4,7 +4,12 @@
       <img src="../../public/img/bg-search.jpg" alt="background" />
       <div class="search__input">
         <i><img src="../../public/img/icon-search.png" alt="icon search" /></i>
-        <input type="text" placeholder="Tìm kiếm bài viết" />
+        <input
+          type="text"
+          placeholder="Tìm kiếm bài viết"
+          v-model="searchQuery"
+          @input="senData"
+        />
       </div>
     </section>
     <section class="blog-detail__content">
@@ -17,14 +22,13 @@
         <div class="blog-detail__content-grid">
           <div class="blog-detail">
             <div class="blog-detail__title">
-              <h1>HLV Park: 'Tôi muốn giành lại AFF Cup từ Thái Lan'</h1>
+              <h1>{{ dataPost.title }}</h1>
               <p>
-                Trên tờ Chosun (Hàn Quốc), HLV Park Hang-seo trải lòng về cảm
-                xúc sau khi vô địch SEA Games 31 và đặt quyết tâm phục hận ở AFF
-                Cup 2022.
+                {{ dataPost.description }}
               </p>
             </div>
-            <div class="blog-detail__img">
+            <div v-html="dataPost.ckeditor"></div>
+            <!-- <div class="blog-detail__img">
               <img
                 src="../../public/img/img__blog-detail.jpg"
                 alt="image blog detail"
@@ -78,7 +82,7 @@
                 nhận sự thay đổi từng chút. Đó cũng có thể coi là một thành tựu
                 của tôi trong thời gian làm việc tại Việt Nam.
               </p>
-            </div>
+            </div> -->
           </div>
           <div class="blog-sidebar">
             <div class="thumbnail">
@@ -155,30 +159,31 @@
         </div>
         <div class="blog__same">
           <h3>BÀI VIẾT LIÊN QUAN</h3>
-          <div class="bottom__line">
+          <div
+            class="bottom__line"
+            v-for="(item, index) in dataByCategory"
+            :key="index"
+          >
             <div class="blog__same-item">
               <a href="">
-                <img src="../../public/img/blog-same1.jpg" alt="" />
+                <img :src="item.urlImage" alt="" />
               </a>
               <div class="description__item">
                 <h4>
-                  Addy.vn chính thức ra mắt kênh Zalo Official Account “Nền tảng
-                  quản trị Addy Enterprise”
+                  {{ item.title }}
                 </h4>
                 <p>
-                  Hoạt động hợp tác đại học của TMA và các trường đại học được
-                  đẩy mạnh trong tháng 04 vừa qua, tiêu biểu là các sự kiện job
-                  fair và ...
+                  {{ item.description }}
                 </p>
                 <div class="date">
-                  <h5>Kĩ năng quản lý</h5>
+                  <h5>{{ item.category }}</h5>
                   <i><img src="../../public/img/dot.png" alt="dot" /></i>
-                  <p>23/05/2022</p>
+                  <p>{{ convertDate(item.created_at) }}</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="bottom__line">
+          <!-- <div class="bottom__line">
             <div class="blog__same-item">
               <a href="">
                 <img src="../../public/img/blog-same2.jpg" alt="" />
@@ -269,7 +274,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="blog__comment">
           <div class="avatar">
@@ -318,8 +323,67 @@
 </template>
 
 <script>
+import postService from "../../service/postService";
+import searchService from "../../service/searchService";
+import { formatDate } from "../../utils/dateFormat";
 export default {
   name: "PostDetail",
+  data() {
+    return {
+      dataPost: {},
+      dataByCategory: {},
+      searchQuery: null,
+      debounce: null,
+      message: null,
+      typing: null,
+    };
+  },
+  async mounted() {
+    this.getData();
+  },
+
+  methods: {
+    async getData() {
+      const id = this.$router.currentRoute.query.id;
+      try {
+        const postData = await postService.findById({
+          id: id,
+        });
+        this.dataPost = postData.data;
+        console.log(this.dataPost);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async senData(event) {
+      searchService
+        .searchPost({
+          payload: this.searchQuery,
+        })
+        .then((res) => {
+          this.debounceSearch(event);
+          this.dataPosts = res.data.payload;
+        })
+        .catch((error) => console.log(error));
+      if (!this.searchQuery) {
+        this.getData();
+      }
+    },
+
+    debounceSearch(event) {
+      this.message = null;
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        this.typing = null;
+        this.message = event.target.value;
+      }, 600);
+    },
+
+    convertDate(createdDate) {
+      return formatDate(new Date(createdDate));
+    },
+  },
 };
 </script>
 

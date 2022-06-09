@@ -34,3 +34,7 @@ export const UPDATE_POST_URL = `${API_URL}/post/update/`;
 export const GET_BY_ID_URL = `${API_URL}/post/findone/`;
 
 export const DELETE_POST_URL = `${API_URL}/post/delete`;
+
+export const SEARCH_POST_URL = `${API_URL}/post/search`;
+
+export const SEARCH_POST_BY_CATEGORY = `${API_URL}/post/search-by-category/`;

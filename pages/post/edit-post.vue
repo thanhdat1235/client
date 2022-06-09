@@ -38,6 +38,23 @@
               placeholder="Nhập vào tiêu đề bài viết"
             />
           </div>
+          <div class="input-group">
+            <label for="description">Mô tả ngắn</label>
+            <span
+              v-if="!$v.description.required && $v.description.$dirty"
+              class="text-danger"
+            >
+              Description is required</span
+            >
+            <textarea
+              id="description"
+              v-model="description"
+              type="text"
+              value="description"
+              class="form-control"
+              placeholder="Nhập vào tiêu đề bài viết"
+            />
+          </div>
           <label
             for="
           "
@@ -84,6 +101,7 @@ export default {
       category: "",
       title: "",
       ckeditor: "",
+      description: "",
     };
   },
   validations: {
@@ -91,6 +109,9 @@ export default {
       required,
     },
     title: {
+      required,
+    },
+    description: {
       required,
     },
   },
@@ -101,6 +122,7 @@ export default {
       this.category = result.data.category;
       this.title = result.data.title;
       this.ckeditor = result.data.ckeditor;
+      this.description = result.data.description;
     } catch (error) {
       console.log(error);
     }
@@ -114,6 +136,7 @@ export default {
         category: this.category,
         title: this.title,
         ckeditor: this.ckeditor,
+        description: this.description,
       });
     },
   },
