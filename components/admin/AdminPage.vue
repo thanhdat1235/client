@@ -441,7 +441,7 @@ export default {
     async handleDeleteMany() {
       try {
         await adminService.deleteMany({
-          ids: this.items,
+          _id: this.items,
         });
       } catch (error) {
         console.log(error);

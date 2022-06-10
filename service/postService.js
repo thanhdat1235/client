@@ -21,6 +21,10 @@ const postService = {
     return axiosService()({
       url: GET_ALL_POST_URL,
       method: "GET",
+      params: {
+        pageSize: params.pageSize,
+        page: params.page,
+      },
     });
   },
 
