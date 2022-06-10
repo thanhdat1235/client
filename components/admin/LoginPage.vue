@@ -9,6 +9,7 @@
             v-on:keyup.enter="onEnter"
             v-model="form.userName"
             type="text"
+            placeholder="Type your username"
           />
         </div>
         <span
@@ -25,6 +26,7 @@
             v-on:keyup.enter="onEnter"
             v-model="form.password"
             type="password"
+            placeholder="Type your password"
           />
         </div>
         <span
@@ -41,7 +43,7 @@
           {{ $v.form.password.$params.minLength.min }} and
         </span>
         <div class="inputBox">
-          <input @click="handleSubmit" type="submit" name="" value="Sign In" />
+          <input @click="handleSubmit" type="submit" name="" value="Login" />
         </div>
       </div>
       <p class="forgot">
