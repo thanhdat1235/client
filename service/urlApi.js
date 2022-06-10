@@ -38,3 +38,9 @@ export const DELETE_POST_URL = `${API_URL}/post/delete`;
 export const SEARCH_POST_URL = `${API_URL}/post/search`;
 
 export const SEARCH_POST_BY_CATEGORY = `${API_URL}/post/search-by-category/`;
+
+// API_CONTACTS
+
+export const CREATE_CONTACT_URL = `${API_URL}/contact/create`;
+
+export const DELETE_CONTACT_URL = `${API_URL}/contact/delete/`;

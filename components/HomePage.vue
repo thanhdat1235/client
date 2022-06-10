@@ -417,21 +417,46 @@
             <div class="content__form">
               <h2>Thông tin liên hệ</h2>
               <form action="">
-                <input type="text" class="name" placeholder="Họ & Tên *" />
+                <span
+                  v-if="!$v.name.required && $v.name.$dirty"
+                  class="text-danger"
+                >
+                  Name is required</span
+                >
+                <input
+                  type="text"
+                  v-model="name"
+                  class="name"
+                  placeholder="Họ & Tên *"
+                />
+                <span
+                  v-if="!$v.phonenumber.required && $v.phonenumber.$dirty"
+                  class="text-danger"
+                >
+                  Phonenumber is required</span
+                >
                 <input
                   type="text"
                   class="number-phone"
                   placeholder="Số điện thoại *"
+                  v-model="phonenumber"
                 />
+                <span
+                  v-if="!$v.demand.required && $v.demand.$dirty"
+                  class="text-danger"
+                >
+                  Demand is required</span
+                >
                 <textarea
                   name=""
                   id=""
                   cols="30"
                   rows="4"
                   placeholder="Nhu cầu của bạn"
+                  v-model="demand"
                 ></textarea>
                 <button class="btn__submit">
-                  <p>Gửi thông tin</p>
+                  <p @click.prevent="contactSubmit">Gửi thông tin</p>
                 </button>
               </form>
             </div>
@@ -444,7 +469,11 @@
 
 <script>
 import Flickity from "vue-flickity";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
+import contactService from "../service/contactService";
 export default {
+  mixins: [validationMixin],
   name: "HomePage",
   components: {
     Flickity,
@@ -457,7 +486,21 @@ export default {
         pageDots: false,
         wrapAround: true,
       },
+      name: "",
+      phonenumber: "",
+      demand: "",
     };
+  },
+  validations: {
+    name: {
+      required,
+    },
+    phonenumber: {
+      required,
+    },
+    demand: {
+      required,
+    },
   },
   methods: {
     next() {
@@ -466,6 +509,19 @@ export default {
 
     previous() {
       this.$refs.flickity.previous();
+    },
+
+    async contactSubmit() {
+      this.$v.$touch();
+      try {
+        const contact = await contactService.create({
+          name: this.name,
+          phonenumber: parseInt(this.phonenumber),
+          demand: this.demand,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

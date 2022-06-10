@@ -11,6 +11,7 @@ const adminService = {
   },
 
   deleteMany: async (params) => {
+    console.log(params);
     return axiosService()({
       url: DELETE_MANY_URL,
       method: "DELETE",

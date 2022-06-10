@@ -66,7 +66,7 @@
               <button
                 type="button"
                 class="btn btn-success success"
-                @click.prevent="getData"
+                @click="getData"
               >
                 Đăng bài
               </button>

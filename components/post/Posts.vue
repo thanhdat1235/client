@@ -199,17 +199,26 @@
               <h2>Danh mục bài viết</h2>
               <ul class="list__options list__option-vuejs">
                 <li
-                  class="option option-vuejs active"
-                  v-for="(data, index) in dataPosts"
+                  @click="getData()"
+                  :class="checkCategory('ALL') ? 'active' : ''"
+                  class="option option-vuejs"
+                >
+                  Tất cả
+                </li>
+                <li
+                  v-for="(data, index) in categoryData"
+                  class="option option-vuejs"
+                  :class="checkCategory(data.category) ? 'active' : ''"
                   :key="index"
+                  @click="searchCategory(data.category)"
                 >
                   {{ data.category }}
                 </li>
-                <!-- <li class="option option-vuejs">In ấn</li>
-                <li class="option option-vuejs">Lý thuyết quản trị</li>
+                <!-- <li class="option option-vuejs">Lý thuyết quản trị</li>
                 <li class="option option-vuejs">Kỹ năng quản lý</li>
                 <li class="option option-vuejs">Kỹ năng lãnh đạo</li>
                 <li class="option option-vuejs">Ưu đãi cho khách hàng</li> -->
+                -->
               </ul>
             </div>
             <div class="featured__posts">
@@ -218,6 +227,7 @@
                 class="featured__posts-detail"
                 v-for="(data, index) in dataPosts"
                 :key="index"
+                @click="searchCategory(data.category)"
               >
                 <div class="title__post">
                   <p>{{ data.category }}</p>
@@ -350,7 +360,10 @@ export default {
   name: "PostPage",
   data() {
     return {
+      categoryCurrent: "ALL",
       dataPosts: null,
+      pointEnvent: "",
+      categoryData: null,
       searchQuery: null,
       debounce: null,
       message: null,
@@ -363,7 +376,7 @@ export default {
       numberOfElements: String,
       pageAble: {
         page: 1,
-        pageSize: 4,
+        pageSize: 6,
       },
     };
   },
@@ -377,15 +390,37 @@ export default {
   },
 
   methods: {
+    checkCategory(value) {
+      return this.categoryCurrent === value;
+    },
+    setCategoryCurrent(value) {
+      this.categoryCurrent = value;
+    },
+
     async getData() {
+      this.categoryCurrent = "ALL";
       try {
         const data = await postService.getAllPosts({
           pageSize: this.pageAble.pageSize,
           page: this.pageAble.page,
         });
         this.dataPosts = data.data.data;
+        this.categoryData = data.data.data;
         this.totalPages = data.data.totalPages;
         this.pageAble = data.data.pageAble;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async searchCategory(category) {
+      this.categoryCurrent = category;
+      console.log(this.categoryCurrent);
+      try {
+        const searchCategory = await searchService.searchPostByCategory({
+          category: category,
+        });
+        this.dataPosts = searchCategory.data;
       } catch (error) {
         console.log(error);
       }
@@ -425,6 +460,8 @@ export default {
     checkActive(index) {
       return this.pageAble.page === index ? "active" : "";
     },
+
+    checkActiveCategory(index) {},
 
     convertDate(createdDate) {
       return formatDate(new Date(createdDate));
