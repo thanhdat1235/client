@@ -204,7 +204,7 @@
             <button
               class="btn-danger delete-many"
               type="submit"
-              @click.prevent="handleDeleteMany"
+              @click="handleDeleteMany"
             >
               Delete
             </button>

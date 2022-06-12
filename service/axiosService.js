@@ -4,9 +4,9 @@ import { API_URL } from "./urlApi";
 const axiosService = () => {
   const token = localStorage.getItem("token");
 
-  if (!token) {
-    window.location.replace("/login");
-  }
+  // if (!token) {
+  //   window.location.replace("/admin/login");
+  // }
 
   const axiosOption = axios.create({
     baseURL: API_URL,

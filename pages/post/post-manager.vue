@@ -51,7 +51,7 @@
               </button>
               <form class="form-delete">
                 <button
-                  @click="handleDelete(post._id)"
+                  @click="handleDelete()"
                   type="submit"
                   class="btn btn-danger"
                 >
@@ -62,11 +62,7 @@
           </tr>
         </tbody>
       </table>
-      <button
-        @click="handleDelete(post._id)"
-        type="submit"
-        class="btn btn-danger"
-      >
+      <button @click="handleDelete()" type="submit" class="btn btn-danger">
         Delete
       </button>
     </form>
@@ -119,10 +115,10 @@ export default {
       }
     },
 
-    async handleDelete(_id) {
+    async handleDelete() {
       try {
-        console.log(_id);
-        await postService.deleteById({ _id });
+        const id = this.items;
+        await postService.deleteById({ id });
       } catch (error) {
         console.log(error);
       }
