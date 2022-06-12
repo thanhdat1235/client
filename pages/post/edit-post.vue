@@ -64,9 +64,9 @@
             <v-ckeditor v-model="ckeditor" />
             <div class="bottom-form">
               <button
-                type="button"
+                type="submit"
                 class="btn btn-success success"
-                @click.prevent="updateData"
+                @click="updateData"
               >
                 Cập nhật
               </button>
@@ -131,13 +131,18 @@ export default {
     async updateData() {
       const id = this.$router.currentRoute.query.id;
       this.$v.$touch();
-      await postService.updatePost({
-        id,
-        category: this.category,
-        title: this.title,
-        ckeditor: this.ckeditor,
-        description: this.description,
-      });
+      try {
+        await postService.updatePost({
+          id,
+          category: this.category,
+          title: this.title,
+          ckeditor: this.ckeditor,
+          description: this.description,
+        });
+        this.$router.push({ path: "/post/post-manager" });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

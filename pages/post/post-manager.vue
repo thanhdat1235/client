@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css
+"
+    />
     <form class="form-post" action="">
       <h1>Tất cả bài viết</h1>
       <div class="new-post">
@@ -51,7 +56,11 @@
               </button>
               <form class="form-delete">
                 <button
+<<<<<<< HEAD
                   @click="handleDelete()"
+=======
+                  @click.prevent="handleDelete(post._id)"
+>>>>>>> 833a3bdee57b184eae0771b4ee73442b1a2da7c1
                   type="submit"
                   class="btn btn-danger"
                 >
@@ -62,9 +71,50 @@
           </tr>
         </tbody>
       </table>
+<<<<<<< HEAD
       <button @click="handleDelete()" type="submit" class="btn btn-danger">
         Delete
       </button>
+=======
+      <div class="pagination">
+        <button
+          @click.prevent="handleDelete"
+          type="submit"
+          class="btn btn-danger"
+        >
+          Delete
+        </button>
+        <div class="button__number-page">
+          <button
+            class="btn__vuejs btn__prev"
+            @click="prevPage"
+            :disabled="disabledPreviousPage"
+            type="button"
+          >
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <ul class="number-page list__option-vuejs">
+            <li
+              class="btn__vuejs option-vuejs"
+              v-for="(total, index) in totalPages"
+              :key="index"
+              :class="checkActive(index + 1)"
+              @click="assign(index)"
+            >
+              {{ index + 1 }}
+            </li>
+          </ul>
+          <button
+            class="btn__vuejs btn__next"
+            :disabled="disabledNextPage"
+            @click="nextPage"
+            type="button"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+>>>>>>> 833a3bdee57b184eae0771b4ee73442b1a2da7c1
     </form>
   </div>
 </template>
@@ -84,10 +134,19 @@ export default {
   },
   data() {
     return {
+      disabledNextPage: false,
+      disabledPreviousPage: false,
       dataPost: {},
       isCheckAll: false,
       isCheck: false,
       items: [],
+      totalElements: String,
+      totalPages: String,
+      numberOfElements: String,
+      pageAble: {
+        page: 1,
+        pageSize: 6,
+      },
     };
   },
   mounted() {
@@ -97,12 +156,49 @@ export default {
   methods: {
     async getAll() {
       try {
-        const result = await getAllPosts.getAllPosts({});
+        const result = await getAllPosts.getAllPosts({
+          pageSize: this.pageAble.pageSize,
+          page: this.pageAble.page,
+        });
         this.dataPost = result.data.data;
+        this.totalPages = result.data.totalPages;
+        this.pageAble = result.data.pageAble;
       } catch (error) {
         console.log(error);
       }
     },
+
+    checkActive(index) {
+      return this.pageAble.page === index ? "active" : "";
+    },
+
+    async assign(index) {
+      this.pageAble.page = index + 1;
+      await this.getAll();
+    },
+
+    async nextPage() {
+      if (this.pageAble.page < this.totalPages) {
+        this.pageAble.page++;
+        await this.getAll();
+        if (this.totalPages == this.pageAble.page) {
+          this.disabledNextPage = true;
+        }
+        this.disabledNextPage = false;
+      }
+    },
+
+    async prevPage() {
+      if (this.pageAble.page > 0) {
+        this.pageAble.page--; // For the previous page, you just increment 'skip' for the page size 'limit'
+        this.getAll();
+      }
+      if ((this.pageAble.page = 1)) {
+        this.disabledPreviousPage = true;
+      }
+      this.disabledPreviousPage = false;
+    },
+
     convertDate(createdDate) {
       return formatDate(new Date(createdDate));
     },
@@ -115,10 +211,18 @@ export default {
       }
     },
 
+<<<<<<< HEAD
     async handleDelete() {
       try {
         const id = this.items;
         await postService.deleteById({ id });
+=======
+    async handleDelete(_id) {
+      this.items.push(_id);
+      try {
+        const _id = this.items;
+        await postService.deleteById({ _id });
+>>>>>>> 833a3bdee57b184eae0771b4ee73442b1a2da7c1
       } catch (error) {
         console.log(error);
       }
@@ -172,6 +276,56 @@ export default {
     display: flex;
     .edit-btn {
       margin-right: 10px;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .button__number-page {
+      display: flex;
+      justify-content: center;
+      border-radius: 6px;
+      margin-right: 15px;
+      .btn__vuejs {
+        width: 44px;
+        height: 44px;
+        background-color: #ffffff;
+        display: flex;
+        border: 1px solid #e9e9e9;
+        i {
+          margin: auto;
+          color: #bfbfbf;
+        }
+        &:hover {
+          i {
+            color: red;
+          }
+        }
+      }
+      .btn__prev {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
+      .number-page {
+        display: flex;
+        .option-vuejs {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: "roRegular400";
+          font-size: 18px;
+          &.active {
+            background-color: $primary-cl;
+            color: #ffffff;
+          }
+        }
+      }
+      .btn__next {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
     }
   }
 }

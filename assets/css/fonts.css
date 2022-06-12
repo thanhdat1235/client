@@ -53,3 +53,18 @@
     font-style: normal;
     font-display: fallback;
 }
+
+@font-face {
+    font-family: "pR400";
+    src: url('../fonts/font-poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: "pBold";
+    src: url('../fonts/font-poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: "pMedium";
+    src: url('../fonts/font-poppins/Poppins-Medium.ttf');
+}

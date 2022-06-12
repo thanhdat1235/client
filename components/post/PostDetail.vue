@@ -95,17 +95,22 @@
             </div>
             <div class="featured__posts">
               <h2>Bài viết nổi bật</h2>
-              <div class="featured__posts-detail">
+              <div
+                class="featured__posts-detail"
+                v-for="(data, index) in dataAllPosts"
+                :key="index"
+                @click="redirect(data._id)"
+              >
                 <div class="title__post">
-                  <p>Kĩ năng quản lý</p>
+                  <p>{{ data.category }}</p>
                   <i><img src="../../public/img/dot.png" alt="dot" /></i>
-                  <span>23/05/2022</span>
+                  <span>{{ convertDate(data.created_at) }}</span>
                 </div>
                 <div class="text">
-                  <p>Quiz: Bạn có phải là nhà quản lý đủ tốt?</p>
+                  <p>{{ data.title }}</p>
                 </div>
               </div>
-              <div class="featured__posts-detail">
+              <!-- <div class="featured__posts-detail">
                 <div class="title__post">
                   <p>Lý thuyết quản trị</p>
                   <i><img src="../../public/img/dot.png" alt="dot" /></i>
@@ -153,7 +158,7 @@
                     Hướng dẫn xây dựng kế hoạch kinh doanh (có kế hoạch mẫu)
                   </p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -331,29 +336,62 @@ export default {
   data() {
     return {
       dataPost: {},
+      dataAllPosts: {},
       dataByCategory: {},
       searchQuery: null,
       debounce: null,
       message: null,
       typing: null,
+      pageAble: {
+        page: 1,
+        pageSize: 5,
+      },
     };
   },
   async mounted() {
-    this.getData();
+    const id = this.$router.currentRoute.query.id;
+    this.getData(id);
+    this.searchAll();
   },
 
   methods: {
-    async getData() {
-      const id = this.$router.currentRoute.query.id;
+    async getData(id) {
       try {
         const postData = await postService.findById({
           id: id,
         });
         this.dataPost = postData.data;
-        console.log(this.dataPost);
+        this.searchBycategory(this.dataPost.category);
       } catch (error) {
         console.log(error);
       }
+    },
+
+    async searchAll() {
+      try {
+        const data = await postService.getAllPosts({
+          pageSize: this.pageAble.pageSize,
+          page: this.pageAble.page,
+        });
+        this.dataAllPosts = data.data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async searchBycategory(category) {
+      try {
+        const searchCategory = await searchService.searchPostByCategory({
+          category: category,
+        });
+        this.dataByCategory = searchCategory.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    redirect(_id) {
+      this.getData(_id);
     },
 
     async senData(event) {
