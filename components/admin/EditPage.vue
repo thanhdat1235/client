@@ -249,7 +249,7 @@ export default {
         this.$router.push({ path: "/admin/admin" });
       } catch (error) {
         console.log(error);
-        this.errEdit = "Error! Error! An error occurred. Please try again. ";
+        this.errEdit = "An error occurred. Please try again. ";
       }
     },
   },

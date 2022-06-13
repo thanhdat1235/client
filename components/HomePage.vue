@@ -458,6 +458,7 @@
                 <button class="btn__submit">
                   <p @click.prevent="contactSubmit">Gửi thông tin</p>
                 </button>
+                <span class="text-danger">{{ errorContact }}</span>
               </form>
             </div>
           </div>
@@ -489,6 +490,7 @@ export default {
       name: "",
       phonenumber: "",
       demand: "",
+      errorContact: "",
     };
   },
   validations: {
@@ -519,8 +521,10 @@ export default {
           phonenumber: parseInt(this.phonenumber),
           demand: this.demand,
         });
+        this.errorContact = "Gửi thông tin thành công";
       } catch (error) {
         console.log(error);
+        this.error = "Đã xảy ra lỗi vui lòng thử lại";
       }
     },
   },

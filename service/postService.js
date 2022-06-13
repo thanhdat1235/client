@@ -6,6 +6,7 @@ import {
   UPDATE_POST_URL,
   GET_BY_ID_URL,
   DELETE_POST_URL,
+  DELETE_ONE_POST,
 } from "./urlApi";
 
 const postService = {
@@ -46,6 +47,14 @@ const postService = {
   deleteById(params) {
     return axiosService()({
       url: DELETE_POST_URL,
+      method: "DELETE",
+      data: params,
+    });
+  },
+
+  deleteOneById: async (params) => {
+    return axiosService()({
+      url: `${DELETE_ONE_POST}${params.id}`,
       method: "DELETE",
       data: params,
     });

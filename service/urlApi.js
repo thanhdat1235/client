@@ -1,5 +1,5 @@
-// export const API_URL = "http://localhost:4001";
-export const API_URL = "https://d134-118-69-134-86.ap.ngrok.io";
+export const API_URL = "http://localhost:4001";
+// export const API_URL = "https://d134-118-69-134-86.ap.ngrok.io";
 
 export const SEARCH_URL = `${API_URL}/admin/search`;
 
@@ -39,6 +39,8 @@ export const DELETE_POST_URL = `${API_URL}/post/delete`;
 export const SEARCH_POST_URL = `${API_URL}/post/search`;
 
 export const SEARCH_POST_BY_CATEGORY = `${API_URL}/post/search-by-category/`;
+
+export const DELETE_ONE_POST = `${API_URL}/post/delete/`;
 
 // API_CONTACTS
 

@@ -56,11 +56,7 @@
               </button>
               <form class="form-delete">
                 <button
-<<<<<<< HEAD
-                  @click="handleDelete()"
-=======
-                  @click.prevent="handleDelete(post._id)"
->>>>>>> 833a3bdee57b184eae0771b4ee73442b1a2da7c1
+                  @click="handleDeleteOne(post._id)"
                   type="submit"
                   class="btn btn-danger"
                 >
@@ -71,17 +67,8 @@
           </tr>
         </tbody>
       </table>
-<<<<<<< HEAD
-      <button @click="handleDelete()" type="submit" class="btn btn-danger">
-        Delete
-      </button>
-=======
       <div class="pagination">
-        <button
-          @click.prevent="handleDelete"
-          type="submit"
-          class="btn btn-danger"
-        >
+        <button @click="handleDelete" type="submit" class="btn btn-danger">
           Delete
         </button>
         <div class="button__number-page">
@@ -103,6 +90,9 @@
             >
               {{ index + 1 }}
             </li>
+            <!-- <li class="btn__vuejs option-vuejs">2</li>
+              <li class="btn__vuejs option-vuejs">3</li>
+              <li class="btn__vuejs option-vuejs">4</li> -->
           </ul>
           <button
             class="btn__vuejs btn__next"
@@ -112,9 +102,20 @@
           >
             <i class="fa-solid fa-arrow-right"></i>
           </button>
+          <div class="select-admin custom-select">
+            <select
+              @click="clickPage"
+              v-model="pageAble.pageSize"
+              name="pagesize"
+              id="pagesize"
+            >
+              <i class="fa-solid fa-caret-down"></i>
+              <option value="10">10 User</option>
+              <option value="20">20 User</option>
+            </select>
+          </div>
         </div>
       </div>
->>>>>>> 833a3bdee57b184eae0771b4ee73442b1a2da7c1
     </form>
   </div>
 </template>
@@ -145,7 +146,7 @@ export default {
       numberOfElements: String,
       pageAble: {
         page: 1,
-        pageSize: 6,
+        pageSize: 10,
       },
     };
   },
@@ -199,6 +200,10 @@ export default {
       this.disabledPreviousPage = false;
     },
 
+    clickPage() {
+      this.getAll();
+    },
+
     convertDate(createdDate) {
       return formatDate(new Date(createdDate));
     },
@@ -211,18 +216,19 @@ export default {
       }
     },
 
-<<<<<<< HEAD
+    async handleDeleteOne(_id) {
+      try {
+        await postService.deleteById({ id: _id });
+        this.$router.push({ path: "/post/post-manager" });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     async handleDelete() {
       try {
         const id = this.items;
         await postService.deleteById({ id });
-=======
-    async handleDelete(_id) {
-      this.items.push(_id);
-      try {
-        const _id = this.items;
-        await postService.deleteById({ _id });
->>>>>>> 833a3bdee57b184eae0771b4ee73442b1a2da7c1
       } catch (error) {
         console.log(error);
       }
@@ -325,6 +331,18 @@ export default {
       .btn__next {
         border-top-right-radius: 6px;
         border-bottom-right-radius: 6px;
+      }
+
+      .select-admin {
+        padding: 5px 10px;
+        margin-left: 10px;
+        height: 42px;
+        margin-right: -10px;
+        #pagesize {
+          padding: 0 10px;
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

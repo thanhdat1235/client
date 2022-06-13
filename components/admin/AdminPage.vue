@@ -1,5 +1,6 @@
 <template>
   <main>
+    <h2 class="text-danger">{{ errorGetAll }}</h2>
     <div
       id="sidebar-main"
       class="sidebar sidebar-default sidebar-separate sidebar-fixed"
@@ -60,7 +61,7 @@
               <li class="nav-item">
                 <a
                   @click="logout"
-                  href="/login"
+                  href="/admin/login"
                   class="nav-link"
                   data-toggle="collapse"
                   role="button"
@@ -287,6 +288,7 @@ export default {
         page: 1,
         pageSize: 5,
       },
+      errorGetAll: "",
     };
   },
   async mounted() {
@@ -335,6 +337,7 @@ export default {
         }
       } catch (error) {
         console.log(error);
+        this.errorGetAll = "Bạn chưa đăng nhập, vui lòng đăng nhập hệ thống.";
       }
     },
     assign(index) {
@@ -386,6 +389,7 @@ export default {
         }
       }
     },
+
     handleEdit(_id) {
       try {
         this.$router.push({ path: "/admin/edit?id=" + _id });
@@ -441,7 +445,7 @@ export default {
     async handleDeleteMany() {
       try {
         await adminService.deleteMany({
-          _id: this.items,
+          id: this.items,
         });
       } catch (error) {
         console.log(error);
@@ -450,7 +454,7 @@ export default {
     async logout() {
       try {
         await authenticationService.logout({});
-        this.$router.push({ path: "/login" });
+        this.$router.push({ path: "/admin/login" });
       } catch (error) {
         console.log(error);
       }
