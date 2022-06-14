@@ -21,6 +21,9 @@ footer {
             line-height: 40px;
             color: $primary-cl;
           }
+          .--h3 {
+            text-align: left;
+          }
           h3 {
             font-family: "Be Vietnam Pro", sans-serif;
             font-weight: 500;
@@ -33,7 +36,7 @@ footer {
           p {
             font-family: "Be Vietnam Pro", sans-serif;
             font-weight: 400;
-            font-size: 14px;
+            font-size: 13px;
             line-height: 21px;
             margin-bottom: 16px;
             span {
@@ -57,8 +60,8 @@ footer {
         }
       }
       .--nthchild2 {
-        padding-left: 0;
-        text-align: center;
+        padding-left: 20px;
+        // text-align: center;
         .title {
           h3 {
           }
@@ -196,6 +199,9 @@ footer {
   }
   footer .--container__footer .wrapper__gird .--nthchild4 {
     padding-left: 0;
+  }
+  footer .--container__footer .wrapper__gird .wrapper__gird-item .title .--h3 {
+    text-align: center;
   }
 }
 

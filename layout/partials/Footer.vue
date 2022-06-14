@@ -21,7 +21,7 @@
         </div>
         <div class="wrapper__gird-item --nthchild2">
           <div class="title">
-            <h3>Về sản phẩm</h3>
+            <h3 class="--h3">Về sản phẩm</h3>
           </div>
           <div class="text__content">
             <a href="#">Giới thiệu về Print</a>

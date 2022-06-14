@@ -754,8 +754,9 @@
           display: grid;
           img {
             width: 100%;
-            max-width: 384px;
+            // max-width: 384px;
             max-height: 281px;
+            object-fit: cover;
           }
           .blog__description {
             align-items: center;
@@ -1703,7 +1704,7 @@
     transform: translateX(175px);
   }
   .price .container .price__content .wrapper__item-slider .price__content-item {
-    width: 168px;
+    width: 155px;
   }
   .price
     .container

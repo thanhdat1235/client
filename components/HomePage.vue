@@ -486,6 +486,7 @@ export default {
         prevNextButtons: false,
         pageDots: false,
         wrapAround: true,
+        imagesLoaded: true,
       },
       name: "",
       phonenumber: "",

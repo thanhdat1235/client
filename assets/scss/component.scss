@@ -216,8 +216,8 @@ article {
 }
 
 .input__signup {
-  // margin-top: 100px;
   margin-bottom: 160px;
+  width: 70%;
   .container {
     .input__signup-content {
       background-color: #fcdbd0;
@@ -284,4 +284,26 @@ article {
 //thư viện của slider phản hồi từ khách hàng
 .flickity-viewport {
   overflow: initial;
+}
+
+@media screen and(max-width: 767px) {
+  .input__signup {
+    width: 100%;
+  }
+  .input__signup .container .input__signup-content .input {
+    flex-direction: column;
+    .input-signup {
+      flex: auto;
+      margin-bottom: 10px;
+    }
+  }
+  .input__signup .container .input__signup-content {
+    height: 200px;
+  }
+}
+
+@media screen and(max-width: 576px) {
+  .search {
+    margin-top: var(--height-header-mobile);
+  }
 }

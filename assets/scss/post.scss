@@ -18,10 +18,14 @@
             border-radius: 8px;
             height: auto;
             overflow: hidden;
+            cursor: pointer;
             img {
               float: right;
-              height: auto;
+              // height: auto;
               width: 100%;
+              // width: 384px;
+              height: 281px;
+              object-fit: cover;
             }
             .blog__description {
               align-items: center;
@@ -202,7 +206,8 @@
   .blogs .container .blog__content .blog__content-sidebar .thumbnail {
     display: flex;
     // justify-content: space-between;
-    align-items: center;
+    // align-items: center;
+    align-items: flex-start;
     .thumbnail__two {
       margin-left: 30px;
     }

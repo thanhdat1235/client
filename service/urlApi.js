@@ -1,5 +1,5 @@
-export const API_URL = "http://localhost:4001";
-// export const API_URL = "https://d134-118-69-134-86.ap.ngrok.io";
+// export const API_URL = "http://localhost:4001";
+export const API_URL = "https://b978-118-69-134-86.ap.ngrok.io";
 
 export const SEARCH_URL = `${API_URL}/admin/search`;
 
