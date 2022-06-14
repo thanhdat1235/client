@@ -159,7 +159,9 @@ header {
             align-items: center;
             .option-vuejs {
               min-width: 100px;
+              list-style: none;
               a {
+                text-decoration: none;
                 font-family: $fm-beR400;
                 font-size: 25px;
                 line-height: 70px;

@@ -41,14 +41,16 @@
           <div class="show__nav-menu">
             <ul class="menu-mobile__list list__option-vuejs">
               <li class="option-vuejs">
-                <a href="/">Trang chủ</a>
+                <NuxtLink to="/">Trang chủ</NuxtLink>
               </li>
               <li class="option option-vuejs">
-                <a href="#price">Báo giá</a>
+                <NuxtLink to="#price">Báo giá</NuxtLink>
               </li>
-              <li class="option-vuejs"><a href="/posts">Bài viết</a></li>
+              <li class="option-vuejs">
+                <NuxtLink to="/post/posts">Bài viết</NuxtLink>
+              </li>
               <li class="option option-vuejs">
-                <a href="#contact">Liên hệ</a>
+                <NuxtLink to="#contact">Liên hệ</NuxtLink>
               </li>
             </ul>
           </div>
@@ -62,6 +64,7 @@
 </template>
 
 <script>
+import "../../utils/main";
 export default {
   name: "Header",
 };

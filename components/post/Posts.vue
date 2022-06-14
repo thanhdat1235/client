@@ -218,7 +218,6 @@
                 <li class="option option-vuejs">Kỹ năng quản lý</li>
                 <li class="option option-vuejs">Kỹ năng lãnh đạo</li>
                 <li class="option option-vuejs">Ưu đãi cho khách hàng</li> -->
-                -->
               </ul>
             </div>
             <div class="featured__posts">
