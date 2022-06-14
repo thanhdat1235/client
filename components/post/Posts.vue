@@ -381,6 +381,15 @@ export default {
   },
 
   async mounted() {
+    const tag = document.querySelector(".post-page");
+    const allTag = document.querySelectorAll(
+      "header .--container__header .main__header .main__header-nav .list__option-vuejs .option-vuejs a"
+    );
+    console.log(allTag);
+    allTag.forEach((item) => {
+      item.classList.remove("active");
+    });
+    tag.classList.add("active");
     try {
       this.getData();
     } catch (error) {

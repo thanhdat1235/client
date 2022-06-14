@@ -1,6 +1,7 @@
 <template>
   <div>
     <section class="blog">
+      <Header />
       <div class="container --container__blog">
         <h2>Bài viết gần đây</h2>
         <carousel
@@ -15,7 +16,7 @@
             v-for="(data, index) in dataTest"
             :key="index"
           >
-            <div class="img">
+            <div @click="redirectPage(data._id)" class="img">
               <img :src="data.urlImage" alt="" />
               <div class="blog__description">
                 <div class="title">
@@ -75,7 +76,7 @@ export default {
       large: window.matchMedia("(min-width: 993px)"),
       tablet: window.matchMedia("(min-width: 768px)"),
       mobile: window.matchMedia("(min-width: 576px)"),
-      largeM: window.matchMedia("(max-width: 1600px)"),
+      largeM: window.matchMedia("(max-width: 2100px)"),
       tabletM: window.matchMedia("(max-width: 993px)"),
       mobileM: window.matchMedia("(max-width: 767px)"),
     };
@@ -98,6 +99,10 @@ export default {
     this.mobileM.addListener(this.myFunctionIM);
   },
   methods: {
+    async redirectPage(_id) {
+      this.$router.push({ path: "/post/post-detail?id=" + _id });
+    },
+
     myFunction(lg) {
       if (lg.matches) {
         return (this.ham = 3);
@@ -113,19 +118,15 @@ export default {
         return (this.ham = 1);
       }
     },
-    myFunctionM(lg) {
-      if (lg.matches) {
-        return (this.ham = 3);
-      }
-    },
-    myFunctionIIM(tb) {
-      if (tb.matches) {
-        return (this.ham = 2);
-      }
-    },
     myFunctionIM(mb) {
       if (mb.matches) {
         return (this.ham = 1);
+      }
+    },
+
+    myFunctionM(lg) {
+      if (lg.matches) {
+        return (this.ham = 3);
       }
     },
   },

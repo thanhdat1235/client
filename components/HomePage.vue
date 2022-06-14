@@ -125,7 +125,7 @@
         </div>
       </div>
     </section>
-    <section class="price">
+    <section id="price" class="price">
       <div class="container --container__price">
         <h2>Bảng giá</h2>
         <div class="price__content">
@@ -392,7 +392,7 @@
         </div>
       </div>
     </section>
-    <section class="contact">
+    <section id="contact" class="contact">
       <div class="container">
         <div class="contact__title">
           <h2>Nếu có bất kì câu hỏi nào, hãy liên hệ ngay với chúng tôi.</h2>
@@ -473,11 +473,16 @@ import Flickity from "vue-flickity";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import contactService from "../service/contactService";
+
 export default {
   mixins: [validationMixin],
   name: "HomePage",
   components: {
     Flickity,
+  },
+  mounted() {
+    const tag = document.querySelector(".post-page");
+    tag.classList.remove("active");
   },
   data() {
     return {

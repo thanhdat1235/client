@@ -54,7 +54,13 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["bootstrap-vue/nuxt"],
+  modules: [
+    "bootstrap-vue/nuxt",
+    "vue-scrollto/nuxt",
+
+    // Or if you have custom options...
+    ["vue-scrollto/nuxt", { duration: 300 }],
+  ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

@@ -24,13 +24,29 @@
               <NuxtLink class="active" to="/">Trang chủ</NuxtLink>
             </li>
             <li class="option-vuejs">
-              <NuxtLink to="#price">Báo giá</NuxtLink>
+              <NuxtLink
+                v-scroll-to="{
+                  el: '#price',
+                  duration: 500,
+                  easing: [0, 0, 1, 0],
+                }"
+                to="#"
+                ><button>Báo giá</button></NuxtLink
+              >
             </li>
             <li class="option-vuejs">
-              <NuxtLink to="/post/posts">Bài viết</NuxtLink>
+              <NuxtLink class="post-page" to="/post/posts">Bài viết</NuxtLink>
             </li>
             <li class="option-vuejs">
-              <NuxtLink to="#contact">Liên hệ</NuxtLink>
+              <NuxtLink
+                v-scroll-to="{
+                  el: '#contact',
+                  duration: 500,
+                  easing: [0, 0, 1, 0],
+                }"
+                to="#"
+                >Liên hệ</NuxtLink
+              >
             </li>
           </ul>
         </div>
@@ -47,7 +63,7 @@
                 <NuxtLink to="#price">Báo giá</NuxtLink>
               </li>
               <li class="option-vuejs">
-                <NuxtLink to="/post/posts">Bài viết</NuxtLink>
+                <NuxtLink class="post-page" to="/post/posts">Bài viết</NuxtLink>
               </li>
               <li class="option option-vuejs">
                 <NuxtLink to="#contact">Liên hệ</NuxtLink>
@@ -65,8 +81,33 @@
 
 <script>
 import "../../utils/main";
+
 export default {
   name: "Header",
+  mounted() {
+    this.getTagPost();
+    this.getAllTagA();
+  },
+  methods: {
+    getTagPost() {
+      const tagPost = document.querySelector(".post-page");
+      tagPost.classList.add("active");
+    },
+
+    getAllTagA() {
+      const allTagA = document.querySelectorAll(
+        "header .--container__header .main__header .main__header-nav .list__option-vuejs .option-vuejs a"
+      );
+      allTagA.forEach((item) => {
+        item.addEventListener("click", () => {
+          allTagA.forEach((data) => {
+            data.classList.remove("active");
+          });
+          item.classList.add("active");
+        });
+      });
+    },
+  },
 };
 </script>
 
