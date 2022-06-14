@@ -34,14 +34,11 @@
             </div>
             <div class="title">
               <h3>
-                Tháng 04 tất bật với chuỗi job fair và nhiều hoạt động kết nối
-                cùng các trường đại học
+                {{ data.title }}
               </h3>
             </div>
             <p class="param__blog">
-              Hoạt động hợp tác đại học của TMA và các trường đại học được đẩy
-              mạnh trong tháng 04 vừa qua, tiêu biểu là các sự kiện job fair và
-              ...
+              {{ data.description }}
             </p>
             <a href="#" class="btn__read-more">
               <p>Đọc tiếp</p>
@@ -75,34 +72,61 @@ export default {
     return {
       dataTest: [],
       ham: 3,
+      large: window.matchMedia("(min-width: 993px)"),
+      tablet: window.matchMedia("(min-width: 768px)"),
+      mobile: window.matchMedia("(min-width: 576px)"),
+      largeM: window.matchMedia("(max-width: 1600px)"),
+      tabletM: window.matchMedia("(max-width: 993px)"),
+      mobileM: window.matchMedia("(max-width: 767px)"),
     };
   },
 
   async mounted() {
     const result = await postService.getAllPosts([]);
     this.dataTest = result.data.data;
-    var x = window.matchMedia("(max-width: 993px)");
-    var y = window.matchMedia("(max-width: 767px)");
-    this.myFunctionTl(x);
-    this.myFunctionMb(y);
-    x.addListener(this.myFunctionTl);
-    y.addListener(this.myFunctionMb);
+    this.myFunction(this.large);
+    this.large.addListener(this.myFunction);
+    this.myFunctionII(this.tablet);
+    this.tablet.addListener(this.myFunctionII);
+    this.myFunctionI(this.mobile);
+    this.mobile.addListener(this.myFunctionI);
+    this.myFunction(this.largeM);
+    this.largeM.addListener(this.myFunctionM);
+    this.myFunctionII(this.tabletM);
+    this.tabletM.addListener(this.myFunctionIIM);
+    this.myFunctionI(this.mobileM);
+    this.mobileM.addListener(this.myFunctionIM);
   },
-
   methods: {
-    myFunctionTl(x) {
-      if (x.matches) {
-        // If media query matches
+    myFunction(lg) {
+      if (lg.matches) {
+        return (this.ham = 3);
+      }
+    },
+    myFunctionII(tb) {
+      if (tb.matches) {
         return (this.ham = 2);
       }
-      return (this.ham = 3);
     },
-    myFunctionMb(y) {
-      if (y.matches) {
-        // If media query matches
+    myFunctionI(mb) {
+      if (mb.matches) {
         return (this.ham = 1);
       }
-      return (this.ham = 2);
+    },
+    myFunctionM(lg) {
+      if (lg.matches) {
+        return (this.ham = 3);
+      }
+    },
+    myFunctionIIM(tb) {
+      if (tb.matches) {
+        return (this.ham = 2);
+      }
+    },
+    myFunctionIM(mb) {
+      if (mb.matches) {
+        return (this.ham = 1);
+      }
     },
   },
 };
