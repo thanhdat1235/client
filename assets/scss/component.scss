@@ -178,6 +178,7 @@ article {
     margin-bottom: 15px;
   }
   .featured__posts-detail {
+    cursor: pointer;
     padding-left: 10px;
     .title__post {
       display: flex;
@@ -217,7 +218,8 @@ article {
 
 .input__signup {
   margin-bottom: 160px;
-  width: 70%;
+  // width: 70%;
+  width: 100%;
   .container {
     .input__signup-content {
       background-color: #fcdbd0;

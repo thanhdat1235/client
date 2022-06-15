@@ -120,6 +120,7 @@
               border-radius: 8px;
               padding: 10px 10px;
               list-style: none;
+              cursor: pointer;
               &.active {
                 background-color: #fff5f5;
                 color: $primary-cl;
