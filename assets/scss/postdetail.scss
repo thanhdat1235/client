@@ -113,9 +113,12 @@
             height: auto;
             overflow: hidden;
             img {
-              width: 100%;
-              float: right;
-              height: 100%;
+              // width: 100%;
+              // float: right;
+              // height: 100%;
+              width: 226px;
+              height: 128px;
+              object-fit: contain;
             }
           }
           .description__item {
@@ -169,6 +172,9 @@
         min-width: 44px;
         min-height: 44px;
         img {
+          min-width: 44px;
+          min-height: 44px;
+          border-radius: 50%;
         }
       }
       textarea {
