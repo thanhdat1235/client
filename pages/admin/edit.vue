@@ -7,12 +7,10 @@
     />
     <div class="container-scroller">
       <div class="page-body-wrapper">
-        <Header />
         <div class="main-panel">
           <div class="content-wrapper">
             <EditPage />
           </div>
-          <Footer />
         </div>
       </div>
     </div>
@@ -20,8 +18,6 @@
 </template>
 
 <script>
-import Header from "../../layout/partials/Header.vue";
-import Footer from "../../layout/partials/Footer.vue";
 import EditPage from "../../components/admin/EditPage.vue";
 export default {
   head: {
@@ -33,9 +29,7 @@ export default {
     ],
   },
   components: {
-    Header,
     EditPage,
-    Footer,
   },
 };
 </script>

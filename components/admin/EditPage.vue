@@ -104,9 +104,9 @@
                 "
                 class="text-danger"
               >
-                Address is required</span
+                Country is required</span
               >
-              <label class="label-input">Address</label>
+              <label class="label-input">Country</label>
               <div class="input_field select_option">
                 <select v-model="dataUser.address">
                   <option value="">Select your country</option>
@@ -131,14 +131,18 @@
                 </select>
                 <div class="select_arrow"></div>
               </div>
-              <input
-                @click.prevent="handleSubmit"
-                class="button"
-                type="submit"
-                value="Update"
-              />
+              <div class="btn-save-cancle">
+                <input
+                  @click="handleSubmit"
+                  class="button left"
+                  type="button"
+                  value="Save"
+                />
+                <NuxtLink to="/admin/admin"
+                  ><input type="submit" class="button right" value="Cancle"
+                /></NuxtLink>
+              </div>
               <span class="text-danger">{{ errEdit }}</span>
-              <p class="forgot"><a href="/admin">Back to admin</a></p>
             </form>
           </div>
         </div>
@@ -223,6 +227,7 @@ export default {
       const id = this.$router.currentRoute.query.id;
       const result = await userSevice.findOne({ id });
       this.dataUser = result.data;
+      console.log(this.dataUser);
     } catch (error) {
       console.log(error);
     }
@@ -231,9 +236,6 @@ export default {
   methods: {
     async handleSubmit() {
       this.$v.$touch();
-      if (!this.$v.$invalid) {
-        console.log(`FirstName: ${this.dataUser.first_name}`);
-      }
       try {
         const id = this.$router.currentRoute.query.id;
         await userSevice.update({
@@ -283,5 +285,18 @@ export default {
     padding-bottom: 5px !important;
     padding-top: 5px !important;
   }
+}
+
+.button {
+  width: 45% !important;
+  border-radius: 4px;
+}
+.left {
+  margin-right: 8%;
+  background-color: yellowgreen !important;
+  padding: 5px 0 !important;
+}
+.right {
+  background-color: gray !important;
 }
 </style>

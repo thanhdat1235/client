@@ -73,7 +73,7 @@
           </button>
         </div>
         <span class="text-danger error-forgot">{{ errRSPW }}</span>
-        <p class="forgot"><a href="/login">Signin</a></p>
+        <p class="forgot"><a href="/admin/login">Signin</a></p>
       </form>
     </div>
   </div>

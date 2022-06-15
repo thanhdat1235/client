@@ -205,7 +205,7 @@ export default {
     title: "Register Page",
     meta: [
       {
-        name: "login",
+        name: "Register",
       },
     ],
   },
@@ -270,7 +270,7 @@ export default {
           gender: this.dataUser.gender,
           address: this.dataUser.address,
         });
-        this.$router.push({ path: "/login" });
+        this.$router.push({ path: "/admin/login" });
       } catch (error) {
         console.log(error);
         this.errRegister =

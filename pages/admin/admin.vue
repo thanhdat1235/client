@@ -7,13 +7,10 @@
     />
     <div class="container-scroller">
       <div class="page-body-wrapper">
-        <Header />
         <div class="main-panel">
           <div class="content-wrapper">
             <AdminPage />
           </div>
-
-          <Footer />
         </div>
       </div>
     </div>
@@ -21,8 +18,6 @@
 </template>
 
 <script>
-import Header from "../../layout/partials/Header.vue";
-import Footer from "../../layout/partials/Footer.vue";
 import AdminPage from "../../components/admin/AdminPage.vue";
 export default {
   head: {
@@ -37,9 +32,7 @@ export default {
     return {};
   },
   components: {
-    Header,
     AdminPage,
-    Footer,
   },
 };
 </script>

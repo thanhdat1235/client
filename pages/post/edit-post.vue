@@ -11,15 +11,56 @@
               v-if="!$v.category.required && $v.category.$dirty"
               class="text-danger"
             >
-              Category is required</span
+              Vui lòng chọn tiêu đề</span
             >
-            <input
-              id="category"
-              v-model="category"
-              type="text"
-              class="form-control"
-              placeholder="Nhập vào danh mục bài viết"
-            />
+            <div class="input-group mb-3">
+              <div class="categry-add">
+                <select
+                  class="custom-select"
+                  id="inputGroupSelect03"
+                  aria-label="Example select with button addon"
+                  v-model="category"
+                >
+                  <option value="">Chọn danh mục bài viết</option>
+                  <option
+                    v-for="(category, index) in dataCategories"
+                    :key="index"
+                    :value="category.value"
+                  >
+                    {{ category.value }}
+                  </option>
+                </select>
+                <b-button v-b-modal.modal-prevent-closing
+                  >Thêm danh mục</b-button
+                >
+              </div>
+              <div>
+                <b-modal
+                  id="modal-prevent-closing"
+                  ref="modal"
+                  title="Nhập vào tiêu đề bài viết"
+                  @show="resetModal"
+                  @hidden="resetModal"
+                  @ok="handleOk"
+                >
+                  <form ref="form" @submit.stop.prevent="handleSubmit">
+                    <b-form-group
+                      label="Tiêu đề"
+                      label-for="name-input"
+                      invalid-feedback="Vui lòng nhập tiêu đề"
+                      :state="nameState"
+                    >
+                      <b-form-input
+                        id="name-input"
+                        v-model="name"
+                        :state="nameState"
+                        required
+                      ></b-form-input>
+                    </b-form-group>
+                  </form>
+                </b-modal>
+              </div>
+            </div>
           </div>
           <div class="input-group">
             <label for="title">Tiêu đề bài viết:</label>
@@ -64,7 +105,7 @@
             <v-ckeditor v-model="ckeditor" />
             <div class="bottom-form">
               <button
-                type="submit"
+                type="button"
                 class="btn btn-success success"
                 @click="updateData"
               >
@@ -98,7 +139,19 @@ export default {
   },
   data() {
     return {
+      name: "",
       category: "",
+      nameState: null,
+      dataCategories: [
+        { value: "Thế giới" },
+        { value: "Pháp luật" },
+        { value: "Bất động sản" },
+        { value: "Ẩm thực" },
+        { value: "Tin tức" },
+        { value: "Sức khỏe" },
+        { value: "Công nghệ" },
+        { value: "Thị trường" },
+      ],
       title: "",
       ckeditor: "",
       description: "",
@@ -144,8 +197,70 @@ export default {
         console.log(error);
       }
     },
+    checkFormValidity() {
+      const valid = this.$refs.form.checkValidity();
+      this.nameState = valid;
+      return valid;
+    },
+    resetModal() {
+      this.name = "";
+      this.nameState = null;
+    },
+    handleOk(bvModalEvent) {
+      // Prevent modal from closing
+      bvModalEvent.preventDefault();
+      // Trigger submit handler
+      this.handleSubmit();
+    },
+    handleSubmit() {
+      // Exit when the form isn't valid
+      if (!this.checkFormValidity()) {
+        return;
+      }
+      // Push the name to submitted names
+      this.dataCategories = [...this.dataCategories, { value: this.name }];
+      // Hide the modal manually
+      this.$nextTick(() => {
+        this.$bvModal.hide("modal-prevent-closing");
+      });
+    },
+    handleChange(value) {
+      console.log(value);
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.input-group {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 10px;
+  input {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+  }
+}
+label {
+  font-weight: bold;
+}
+.mb-3 {
+  width: 100%;
+  .categry-add {
+    display: flex;
+    align-items: center;
+    select {
+      width: 86%;
+      margin-right: 22px;
+      .add-category {
+        background-color: green;
+      }
+    }
+    b-button {
+      width: 20%;
+    }
+  }
+}
+</style>

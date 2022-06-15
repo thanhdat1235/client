@@ -44,7 +44,7 @@ export default {
           email: email,
           otp_code: this.dataUser.otp_code,
         });
-        this.$router.push({ path: "/resetpassword?email=" + email });
+        this.$router.push({ path: "/admin/resetpassword?email=" + email });
       } catch (error) {
         console.log(error);
         this.errOTP = "OTP does not match!";

@@ -138,13 +138,13 @@
               </button>
             </form>
           </div>
-          <table class="table">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">
                   <div class="form-check">
                     <input
-                      :checked="isCheckAll"
+                      v-model="isCheckAll"
                       @click="handleCheckAll"
                       type="checkbox"
                       class="form-check-input all-check"
@@ -166,8 +166,9 @@
               <tr v-for="(user, index) in dataUser" :key="index">
                 <th scope="col">
                   <input
-                    :checked="isCheck"
-                    @click="handleCheck(user._id)"
+                    v-bind:value="user"
+                    @change="handleCheck"
+                    v-model="items"
                     type="checkbox"
                     class="form-check-input"
                     id="exampleCheck1"
@@ -202,44 +203,61 @@
             </tbody>
           </table>
           <nav aria-label="Page navigation example" class="example">
-            <button
-              class="btn-danger delete-many"
-              type="submit"
-              @click="handleDeleteMany"
-            >
-              Delete
-            </button>
-            <div class="right-page">
-              <ul class="pagination">
-                <li @click="previousPage" :class="prev" class="page-item">
-                  <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item">
-                  <a
+            <form action="" class="delete-btn">
+              <button
+                class="btn-danger delete-many"
+                type="submit"
+                @click="handleDeleteMany"
+                :disabled="opacity.disabled"
+                :style="{ cursor: opacity.cursor, opacity: opacity.opacity }"
+              >
+                Delete
+              </button>
+            </form>
+            <div class="pagination">
+              <div class="button__number-page">
+                <button
+                  class="btn__vuejs btn__prev"
+                  @click="prevPage"
+                  :disabled="disabledPreviousPage"
+                  type="button"
+                >
+                  <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <ul class="number-page list__option-vuejs">
+                  <li
+                    class="btn__vuejs option-vuejs"
                     v-for="(total, index) in totalPages"
                     :key="index"
                     :class="checkActive(index + 1)"
-                    class="page-link"
                     @click="assign(index)"
-                    href="#"
-                    >{{ index + 1 }}</a
                   >
-                </li>
-                <li @click="nextPage" :class="next" class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-              <div class="select-admin custom-select">
-                <select
-                  @click="clickPage"
-                  v-model="pageAble.pageSize"
-                  name="pagesize"
-                  id="pagesize"
+                    {{ index + 1 }}
+                  </li>
+                  <!-- <li class="btn__vuejs option-vuejs">2</li>
+              <li class="btn__vuejs option-vuejs">3</li>
+              <li class="btn__vuejs option-vuejs">4</li> -->
+                </ul>
+                <button
+                  class="btn__vuejs btn__next"
+                  :disabled="disabledNextPage"
+                  @click="nextPage"
+                  type="button"
                 >
-                  <i class="fa-solid fa-caret-down"></i>
-                  <option value="5">5 User</option>
-                  <option value="10">10 User</option>
-                </select>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <div class="select-admin custom-select">
+                  <select
+                    @click="clickPage"
+                    v-model="pageAble.pageSize"
+                    name="pagesize"
+                    id="pagesize"
+                  >
+                    <i class="fa-solid fa-caret-down"></i>
+                    <option value="10">10 User</option>
+                    <option value="20">20 User</option>
+                  </select>
+                </div>
               </div>
             </div>
           </nav>
@@ -269,24 +287,27 @@ export default {
   data() {
     return {
       searchQuery: null,
+      disabledNextPage: false,
+      disabledPreviousPage: false,
       message: null,
       typing: null,
       debounce: null,
+      opacity: {
+        disabled: true,
+        cursor: "not-allowed",
+        opacity: "0.5",
+      },
       active: "",
-      prev: "disabled",
-      next: "disabled",
       dataUser: {},
       userInfo: null,
-      isCheck: false,
       isCheckAll: false,
-      cursor: "",
       items: [],
       totalElements: String,
       totalPages: String,
       numberOfElements: String,
       pageAble: {
         page: 1,
-        pageSize: 5,
+        pageSize: 10,
       },
       errorGetAll: "",
     };
@@ -325,69 +346,44 @@ export default {
         this.dataUser = res.data.data;
         this.totalPages = res.data.totalPages;
         this.pageAble = res.data.pageAble;
-        if (this.pageAble.page == 1) {
-          this.prev = "disabled";
-        } else {
-          this.prev = "";
-        }
-        if (this.totalPages == this.pageAble.page) {
-          this.next = "disabled";
-        } else {
-          this.next = "";
-        }
       } catch (error) {
         console.log(error);
-        this.errorGetAll = "Bạn chưa đăng nhập, vui lòng đăng nhập hệ thống.";
       }
     },
-    assign(index) {
-      this.pageAble.page = index + 1;
-      this.getData();
-      if (this.pageAble.page == 1) {
-        this.prev = "disabled";
-      } else {
-        this.prev = "";
-      }
-      if (this.totalPages == this.pageAble.page) {
-        this.next = "disabled";
-      } else {
-        this.next = "";
-      }
-    },
+
     clickPage() {
       this.getData();
-      if (this.pageAble.page == 1) {
-        this.prev = "disabled";
-      } else {
-        this.prev = "";
-      }
-      if (this.totalPages == this.pageAble.page) {
-        this.next = "disabled";
-      } else {
-        this.next = "";
+    },
+
+    checkActive(index) {
+      return this.pageAble.page === index ? "active" : "";
+    },
+
+    async assign(index) {
+      this.pageAble.page = index + 1;
+      await this.getData();
+    },
+
+    async nextPage() {
+      if (this.pageAble.page < this.totalPages) {
+        this.pageAble.page++;
+        await this.getData();
+        if (this.totalPages == this.pageAble.page) {
+          this.disabledNextPage = true;
+        }
+        this.disabledNextPage = false;
       }
     },
-    nextPage() {
-      this.pageAble.page++; // For the next page you just increment 'skip' for the page size 'limit'
-      this.getData();
-      this.prev = "";
-      if (this.totalPages == this.pageAble.page) {
-        this.next = "disabled";
-      } else {
-        this.next = "";
-      }
-    },
-    previousPage() {
+
+    async prevPage() {
       if (this.pageAble.page > 0) {
         this.pageAble.page--; // For the previous page, you just increment 'skip' for the page size 'limit'
-        this.getData();
-        this.next = "";
-        if (this.pageAble.page >= 1) {
-          this.prev = "disabled";
-        } else {
-          this.prev = "";
-        }
+        await this.getData();
       }
+      if ((this.pageAble.page = 1)) {
+        this.disabledPreviousPage = true;
+      }
+      this.disabledPreviousPage = false;
     },
 
     handleEdit(_id) {
@@ -411,41 +407,37 @@ export default {
       return formatDate(new Date(createdDate));
     },
     handleCheckAll() {
-      if (this.isCheckAll == false) {
-        (this.isCheckAll = true),
-          (this.isCheck = true),
-          this.dataUser.forEach((user) => {
-            this.items.push(user._id);
-          });
-        console.log(this.items);
-      } else {
-        (this.isCheckAll = false), (this.isCheck = false), (this.items = []);
+      this.isCheckAll = !this.isCheckAll;
+      this.items = [];
+      if (this.isCheckAll) {
+        // Check all
+        for (var key in this.dataUser) {
+          this.items.push(this.dataUser[key]);
+        }
       }
     },
-    handleCheck(_id) {
-      console.log(this.items);
-      if (this.items.includes(_id) == false) {
-        this.items.push(_id);
+
+    handleCheck() {
+      if (this.items.length >= 2) {
+        this.opacity.disabled = false;
+        this.opacity.cursor = "pointer";
+        this.opacity.opacity = "1";
       } else {
-        this.items.splice(this.items.indexOf(_id), 1);
+        this.opacity.disabled = true;
+        this.opacity.cursor = "not-allowed";
+        this.opacity.opacity = "0.5";
       }
       if (this.items.length == this.dataUser.length) {
         this.isCheckAll = true;
       } else {
         this.isCheckAll = false;
       }
-      if (this.items.length >= 2) {
-        this.showDelete = true;
-        this.toggle = "block";
-      } else {
-        this.showDelete = false;
-        this.toggle = "none";
-      }
     },
     async handleDeleteMany() {
+      const deletes = this.items.map((item) => item._id);
       try {
         await adminService.deleteMany({
-          id: this.items,
+          id: deletes,
         });
       } catch (error) {
         console.log(error);
@@ -458,9 +450,6 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    },
-    checkActive(index) {
-      return this.pageAble.page === index ? "active" : "";
     },
   },
 };
@@ -508,6 +497,7 @@ export default {
 }
 
 .delete-many {
+  color: white;
   display: block;
   margin-left: 30px;
   border-radius: 3px;
@@ -627,10 +617,74 @@ export default {
       // margin-left: -120px;
       margin-bottom: 20px;
       a {
-        color: black;
+        color: white;
         text-decoration: none;
         font-size: 15px;
         font-weight: bold;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  .button__number-page {
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+    margin-right: 15px;
+    .btn__vuejs {
+      width: 44px;
+      height: 44px;
+      background-color: #ffffff;
+      display: flex;
+      border: 1px solid #e9e9e9;
+      i {
+        margin: auto;
+        color: #bfbfbf;
+      }
+      &:hover {
+        i {
+          color: red;
+        }
+      }
+    }
+    .btn__prev {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+    .number-page {
+      display: flex;
+      .option-vuejs {
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "roRegular400";
+        font-size: 18px;
+        &.active {
+          background-color: $primary-cl;
+          color: #ffffff;
+        }
+      }
+    }
+    .btn__next {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .select-admin {
+      padding: 5px 10px;
+      margin-left: 10px;
+      height: 42px;
+      margin-right: -10px;
+      #pagesize {
+        padding: 0 10px;
+        width: 100%;
+        height: 100%;
       }
     }
   }

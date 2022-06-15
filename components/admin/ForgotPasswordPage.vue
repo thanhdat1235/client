@@ -50,7 +50,9 @@ export default {
 
       try {
         await userSevice.forgotpassword({ email: this.dataUser.email });
-        this.$router.push({ path: "/verifyotp?email=" + this.dataUser.email });
+        this.$router.push({
+          path: "/admin/verifyotp?email=" + this.dataUser.email,
+        });
       } catch (error) {
         console.log(error);
         this.errEmail = "Email is not correct!";

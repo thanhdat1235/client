@@ -12,14 +12,14 @@
           <NuxtLink to="/post/create-post">Đăng bài</NuxtLink>
         </button>
       </div>
-      <table class="table">
+      <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
             <th>
               <div class="input-group-text">
                 <input
                   type="checkbox"
-                  :checked="isCheckAll"
+                  v-model="isCheckAll"
                   @click="handleCheckAll"
                 />
               </div>
@@ -37,8 +37,9 @@
               <div class="input-group-text">
                 <input
                   type="checkbox"
-                  :checked="isCheck"
-                  @click="handleCheck(post._id)"
+                  v-bind:value="post"
+                  v-model="items"
+                  @change="handleCheck"
                 />
               </div>
             </th>
@@ -110,8 +111,8 @@
               id="pagesize"
             >
               <i class="fa-solid fa-caret-down"></i>
-              <option value="10">10 User</option>
-              <option value="20">20 User</option>
+              <option value="10">10 Bài viết</option>
+              <option value="20">20 Bài viết</option>
             </select>
           </div>
         </div>
@@ -135,11 +136,15 @@ export default {
   },
   data() {
     return {
+      opacity: {
+        disabled: true,
+        cursor: "not-allowed",
+        opacity: "0.5",
+      },
       disabledNextPage: false,
       disabledPreviousPage: false,
       dataPost: {},
       isCheckAll: false,
-      isCheck: false,
       items: [],
       totalElements: String,
       totalPages: String,
@@ -226,8 +231,9 @@ export default {
     },
 
     async handleDelete() {
+      const idDelete = this.items.map((item) => item._id);
       try {
-        const id = this.items;
+        const id = idDelete;
         await postService.deleteById({ id });
       } catch (error) {
         console.log(error);
@@ -235,24 +241,25 @@ export default {
     },
 
     handleCheckAll() {
-      if (this.isCheckAll == false) {
-        (this.isCheckAll = true),
-          (this.isCheck = true),
-          this.dataPost.forEach((user) => {
-            this.items.push(user._id);
-          });
-        console.log(this.items);
-      } else {
-        (this.isCheckAll = false), (this.isCheck = false), (this.items = []);
+      this.isCheckAll = !this.isCheckAll;
+      this.items = [];
+      if (this.isCheckAll) {
+        // Check all
+        for (var key in this.dataPost) {
+          this.items.push(this.dataPost[key]);
+        }
       }
     },
 
-    handleCheck(_id) {
-      console.log(this.items);
-      if (this.items.includes(_id) == false) {
-        this.items.push(_id);
+    handleCheck() {
+      if (this.items.length >= 2) {
+        this.opacity.disabled = false;
+        this.opacity.cursor = "pointer";
+        this.opacity.opacity = "1";
       } else {
-        this.items.splice(this.items.indexOf(_id), 1);
+        this.opacity.disabled = true;
+        this.opacity.cursor = "not-allowed";
+        this.opacity.opacity = "0.5";
       }
       if (this.items.length == this.dataPost.length) {
         this.isCheckAll = true;
@@ -273,13 +280,14 @@ export default {
     margin-bottom: 15px;
     button {
       a {
-        color: black;
+        color: white;
         font-weight: bold;
       }
     }
   }
   .td-delete {
     display: flex;
+    color: white;
     .edit-btn {
       margin-right: 10px;
     }
@@ -289,6 +297,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
     .button__number-page {
       display: flex;
       justify-content: center;
@@ -317,6 +326,7 @@ export default {
       .number-page {
         display: flex;
         .option-vuejs {
+          color: black;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -346,5 +356,10 @@ export default {
       }
     }
   }
+}
+
+.input-group-text {
+  background-color: none;
+  border: none;
 }
 </style>

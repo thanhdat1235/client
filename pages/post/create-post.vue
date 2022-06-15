@@ -1,6 +1,5 @@
 <template>
   <div class="post-new">
-    <Header class="header-news-post" />
     <div class="container">
       <form action="" class="editor">
         <h1 class="heading">Đăng bài viết</h1>
@@ -11,15 +10,56 @@
               v-if="!$v.category.required && $v.category.$dirty"
               class="text-danger"
             >
-              Category is required</span
+              Vui lòng chọn tiêu đề</span
             >
-            <input
-              id="category"
-              v-model="category"
-              type="text"
-              class="form-control"
-              placeholder="Nhập vào danh mục bài viết"
-            />
+            <div class="input-group mb-3">
+              <div class="categry-add">
+                <select
+                  class="custom-select"
+                  id="inputGroupSelect03"
+                  aria-label="Example select with button addon"
+                  v-model="category"
+                >
+                  <option value="" selected>Chọn danh mục bài viết</option>
+                  <option
+                    v-for="(category, index) in dataCategories"
+                    :key="index"
+                    :value="category.value"
+                  >
+                    {{ category.value }}
+                  </option>
+                </select>
+                <b-button v-b-modal.modal-prevent-closing
+                  >Thêm danh mục</b-button
+                >
+              </div>
+              <div>
+                <b-modal
+                  id="modal-prevent-closing"
+                  ref="modal"
+                  title="Nhập vào tiêu đề bài viết"
+                  @show="resetModal"
+                  @hidden="resetModal"
+                  @ok="handleOk"
+                >
+                  <form ref="form" @submit.stop.prevent="handleSubmit">
+                    <b-form-group
+                      label="Tiêu đề"
+                      label-for="name-input"
+                      invalid-feedback="Vui lòng nhập tiêu đề"
+                      :state="nameState"
+                    >
+                      <b-form-input
+                        id="name-input"
+                        v-model="name"
+                        :state="nameState"
+                        required
+                      ></b-form-input>
+                    </b-form-group>
+                  </form>
+                </b-modal>
+              </div>
+            </div>
           </div>
           <div class="input-group">
             <label for="title">Tiêu đề bài viết:</label>
@@ -27,7 +67,13 @@
               v-if="!$v.title.required && $v.title.$dirty"
               class="text-danger"
             >
-              Title is required</span
+              Vui lòng nhập tiêu đề</span
+            >
+            <span
+              v-if="!$v.title.maxLength && $v.title.$dirty"
+              class="text-danger"
+            >
+              Tiêu đề chỉ tối đa 255 ký tự</span
             >
             <input
               id="title"
@@ -44,7 +90,7 @@
               v-if="!$v.description.required && $v.description.$dirty"
               class="text-danger"
             >
-              Description is required</span
+              Vui lòng nhập mô tả</span
             >
             <textarea
               id="description"
@@ -78,16 +124,13 @@
         </div>
       </form>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
-import Header from "../../layout/partials/Header.vue";
-import Footer from "../../layout/partials/Footer.vue";
 import postService from "../../service/postService";
 import { validationMixin } from "vuelidate";
-import { required } from "vuelidate/lib/validators";
+import { required, maxLength } from "vuelidate/lib/validators";
 
 export default {
   mixins: [validationMixin],
@@ -101,10 +144,22 @@ export default {
   },
   data() {
     return {
+      name: "",
       category: "",
+      nameState: null,
       title: "",
       ckeditor: "",
       description: "",
+      dataCategories: [
+        { value: "Thế giới" },
+        { value: "Pháp luật" },
+        { value: "Bất động sản" },
+        { value: "Ẩm thực" },
+        { value: "Tin tức" },
+        { value: "Sức khỏe" },
+        { value: "Công nghệ" },
+        { value: "Thị trường" },
+      ],
     };
   },
   validations: {
@@ -113,17 +168,15 @@ export default {
     },
     title: {
       required,
+      maxLength: maxLength(255),
     },
     description: {
       required,
     },
   },
-  components: {
-    Header,
-    Footer,
-  },
   methods: {
     async getData() {
+      console.log(this.dataCategories.value);
       this.$v.$touch();
       try {
         const newPost = await postService.createNewPost({
@@ -136,6 +189,33 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    checkFormValidity() {
+      const valid = this.$refs.form.checkValidity();
+      this.nameState = valid;
+      return valid;
+    },
+    resetModal() {
+      this.name = "";
+      this.nameState = null;
+    },
+    handleOk(bvModalEvent) {
+      // Prevent modal from closing
+      bvModalEvent.preventDefault();
+      // Trigger submit handler
+      this.handleSubmit();
+    },
+    handleSubmit() {
+      // Exit when the form isn't valid
+      if (!this.checkFormValidity()) {
+        return;
+      }
+      // Push the name to submitted names
+      this.dataCategories = [...this.dataCategories, { value: this.name }];
+      // Hide the modal manually
+      this.$nextTick(() => {
+        this.$bvModal.hide("modal-prevent-closing");
+      });
     },
   },
 };
@@ -177,6 +257,23 @@ export default {
   }
   label {
     font-weight: bold;
+  }
+  .mb-3 {
+    width: 100%;
+    .categry-add {
+      display: flex;
+      align-items: center;
+      select {
+        width: 86%;
+        margin-right: 22px;
+        .add-category {
+          background-color: green;
+        }
+      }
+      b-button {
+        width: 20%;
+      }
+    }
   }
 }
 </style>
