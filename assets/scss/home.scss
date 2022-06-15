@@ -252,6 +252,9 @@
             border-radius: 10px;
             transition: 0.2s;
             z-index: 10;
+            a {
+              text-decoration: none;
+            }
             .--title {
               h4 {
                 color: $primary-cl;
@@ -635,7 +638,8 @@
         padding: 86px 0;
         .content__form {
           width: 602px;
-          height: 493px;
+          // height: 544px;
+          height: auto;
           border-radius: 8px;
           background-color: #ffffff;
           padding-left: 32px;
@@ -717,7 +721,7 @@
 
 .blog {
   margin-top: 60px;
-  margin-bottom: 180px;
+  margin-bottom: 160px;
   .--container__blog {
     position: relative;
     h2 {
@@ -748,6 +752,7 @@
       margin-top: 60px;
       .blog__slider-item {
         width: 33.333333%;
+        cursor: pointer;
         .img {
           position: relative;
           border-radius: 8px;
@@ -818,7 +823,9 @@
             color: #141414;
             margin-top: 25px;
             margin-bottom: 14px;
-            padding-right: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
         }
         p {
@@ -1050,7 +1057,7 @@
     height: 78px;
   }
   .feedback .--container__feedback .feedback__slider {
-    height: 433px;
+    height: 472px;
   }
   .feedback .--container__feedback .feedback__slider-btn {
     bottom: 40px;
@@ -1062,6 +1069,9 @@
 }
 
 @media screen and(max-width: 993px) {
+  .feedback .--container__feedback .feedback__slider {
+    height: 410px;
+  }
   .download .wrapper__text {
     width: 700px;
   }
@@ -1638,7 +1648,7 @@
     margin: 24px auto auto auto;
   }
   .contact .contact__form .container .contact__form-content .content__form {
-    height: 475px;
+    height: 515px;
   }
 }
 
@@ -1723,7 +1733,7 @@
     font-size: 13px;
   }
   .contact .contact__form .container .contact__form-content .content__form {
-    height: 444px;
+    height: 546px;
   }
   .contact
     .contact__form
@@ -1734,7 +1744,7 @@
     .btn__submit {
     width: 170px;
     height: 50px;
-    margin: 9px auto auto auto;
+    margin: 25px auto auto auto;
   }
   .contact
     .contact__form
